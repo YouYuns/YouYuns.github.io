@@ -18,7 +18,8 @@ import './css/SurveryModal.css';
 
 import Invitation from './pages/Invitation';
 import Calendar from './pages/Calendar';
-import Contact from './pages/Account';
+import Account from './pages/Account';
+import Contact from './pages/Contact';
 import Location from './pages/Location';
 import ImgGallery from './pages/ImgGallery';
 import Scroll from './pages/Scroll';
@@ -67,6 +68,7 @@ function App() {
        <div ref={contactRef} className="section">
         <Contact />
       </div>
+      <Account />
       <Footer />
     </div>
   );

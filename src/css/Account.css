@@ -97,12 +97,9 @@
   background: white;
   border-radius: 5px;
   margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-   transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-  padding: 10px 0;
+  display: block; /* flex 대신 block */
+  transition: max-height 0.5s ease, padding 0.5s ease;
+  padding: 0px 0; /* 초기 padding 0 */
 }
 
 /* 신랑/신부 섹션 */
@@ -159,6 +156,8 @@
   cursor: pointer;
   text-align: center;
 }
+
+
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }

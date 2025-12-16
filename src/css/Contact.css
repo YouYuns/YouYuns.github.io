@@ -1,0 +1,51 @@
+.css-1wk23ob {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.css-1ar4t03 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 대표 인물 */
+.css-wbwlph {
+  margin-bottom: 20px;
+}
+
+/* 가족 */
+.css-1sxnyrq {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 각 인물 */
+.css-z9wtaq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 이미지 div 동그라미 처리 */
+.css-10xdy62,
+.css-5mwkw5,
+.css-1pl256a,
+.css-gfdq4a,
+.css-10usxii,
+.css-jv1t7d {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* 이름 */
+.css-11lk4wt {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}

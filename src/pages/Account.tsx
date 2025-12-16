@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../css/Modal.css';
 
 interface Contact {
@@ -9,6 +9,7 @@ interface Contact {
 
 const Account: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [maxHeight, setMaxHeight] = useState('0px');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const groom_contact: Contact[] = [
@@ -23,34 +24,43 @@ const Account: React.FC = () => {
   ];
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
+  };
 
-    if (!isOpen && dropdownRef.current) {
-      const topPos = dropdownRef.current.offsetTop - 50; // 상단 여유 공간
+  // isOpen 상태가 바뀌면 maxHeight를 계산
+ useEffect(() => {
+  if (dropdownRef.current) {
+    // 다음 렌더 사이클에 상태 업데이트
+    const scrollHeight = dropdownRef.current.scrollHeight;
+    const timer = setTimeout(() => {
+      setMaxHeight(isOpen ? `${scrollHeight}px` : '0px');
+    }, 0);
+
+    // 드롭다운 열릴 때 스크롤 이동
+    if (isOpen) {
+      const topPos = dropdownRef.current.offsetTop - 50;
       window.scrollTo({ top: topPos, behavior: 'smooth' });
     }
-  };
-  const copyToClipboard = (text: string) => {
-      navigator.clipboard.writeText(text)
-        .then(() => {
-          alert(`클립보드에 계좌가 복사되었습니다.`);
-        })
-        .catch(() => {
-          alert(`클립보드에 계좌가 복사가 실패 되었습니다.`);
-        });
-    };
 
-   const renderContact = (contact: Contact) => (
+    return () => clearTimeout(timer);
+  }
+}, [isOpen]);
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text)
+      .then(() => alert('클립보드에 계좌가 복사되었습니다.'))
+      .catch(() => alert('클립보드 복사가 실패했습니다.'));
+  };
+
+  const renderContact = (contact: Contact) => (
     <div key={contact.person} className="contact__item">
       <span>{contact.person}: {contact.account}</span>
-      <button
-        className="copy-button"
-        onClick={() => copyToClipboard(contact.account)}
-      >
+      <button className="copy-button" onClick={() => copyToClipboard(contact.account)}>
         복사하기
       </button>
     </div>
   );
+
   return (
     <div className="container">
       <div className='contact__sub_title'>Gift Love</div>
@@ -59,24 +69,30 @@ const Account: React.FC = () => {
       <div className='contact__content1'>참석이 어려우신 분들은</div>
       <div className='contact__content2'>축하의 마음을 전달해 주세요.</div>
 
-      {/* 버튼 한 개 */}
       <button className="contact-button" onClick={toggleDropdown}>
         계좌번호 확인하기
       </button>
 
-      {/* 드롭다운 전체 */}
-      {isOpen && (
-        <div className="contact__dropdown" ref={dropdownRef}>
-          <div className="contact__section">
-            <h4>신랑 측</h4>
-             {groom_contact.map(renderContact)}
-          </div>
-          <div className="contact__section">
-            <h4>신부 측</h4>
-            {bride_contact.map(renderContact)}
-          </div>
+      {/* 항상 렌더링, maxHeight와 padding으로 슬라이드 */}
+      <div
+        className="contact__dropdown"
+        ref={dropdownRef}
+        style={{
+          maxHeight: maxHeight,
+          padding: isOpen ? '10px 0' : '0px 0',
+          overflow: 'hidden',
+          transition: 'max-height 0.5s ease, padding 0.5s ease',
+        }}
+      >
+        <div className="contact__section">
+          <h4>신랑 측</h4>
+          {groom_contact.map(renderContact)}
         </div>
-      )}
+        <div className="contact__section">
+          <h4>신부 측</h4>
+          {bride_contact.map(renderContact)}
+        </div>
+      </div>
     </div>
   );
 };
