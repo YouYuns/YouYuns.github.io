@@ -10,6 +10,15 @@ const images = [p1, p2, p3, p4, p5];
 const MAX_SCALE = 1.3;
 const IMAGE_SCROLL_RATIO = 1.0;
 
+const imageTexts = [
+  "첫 번째 사진 설명: 행복한 순간",
+  "두 번째 사진 설명: 아름다운 풍경",
+  "세 번째 사진 설명: 웃음 가득한 시간",
+  "네 번째 사진 설명: 소중한 추억",
+  "다섯 번째 사진 설명: 함께한 날들"
+];
+
+
 const ImgGallery: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scales, setScales] = useState<number[]>(
@@ -104,27 +113,49 @@ const ImgGallery: React.FC = () => {
     <div ref={containerRef} style={{ position: 'relative' }}>
       
       {/* 🔥 이미지 연출 구간 */}
-      <div style={{ height: galleryScrollHeight }}>
-        {images.map((img, index) => (
-          <div
-            key={index}
-            style={{
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
-              transform: `translate(-50%, -50%) scale(${scales[index]})`,
-              opacity: opacities[index],
-              transition: 'transform 0.1s linear, opacity 0.1s linear',
-              width: '80%',
-              display: 'flex',
-              justifyContent: 'center',
-              pointerEvents: 'none',
-            }}
-          >
-            <img src={img} alt={`gallery-${index}`} style={{ width: '100%', height: 'auto' }} />
-          </div>
-        ))}
-      </div>
+     <div style={{ height: galleryScrollHeight }}>
+          {images.map((img, index) => (
+            <div
+              key={index}
+              style={{
+                position: 'fixed',
+                top: '50%',
+                left: '50%',
+                transform: `translate(-50%, -50%) scale(${scales[index]})`,
+                opacity: opacities[index],
+                transition: 'transform 0.1s linear, opacity 0.1s linear',
+                width: '80%',
+                display: 'flex',
+                flexDirection: 'column', // 세로 정렬
+                alignItems: 'center',    // 가운데 정렬
+                pointerEvents: 'none',
+              }}
+            >
+              {/* 이미지 */}
+              <img
+                src={img}
+                alt={`gallery-${index}`}
+                style={{ width: '100%', height: 'auto', borderRadius: '16px' }}
+              />
+
+              {/* 이미지 바로 아래 글자 */}
+              <div
+                style={{
+                  marginTop: '15px',                   // 이미지와 띄움
+                  fontFamily: 'KimNamyun, sans-serif', // 원하는 폰트
+                  fontSize: '1.2rem',
+                  lineHeight: '25px',
+                  color: '#333',
+                  textAlign: 'center',
+                  opacity: opacities[index],           // 이미지와 함께 나타나도록
+                  transition: 'opacity 0.1s linear',
+                }}
+              >
+                {imageTexts[index]}
+              </div>
+            </div>
+          ))}
+        </div>
 
       {/* 🔥 다음 컴포넌트 밀어내는 스페이서 */}
       <div style={{ height: spacerHeight }} />

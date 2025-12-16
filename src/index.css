@@ -34,3 +34,18 @@ code {
     font-family: 'BookkMyungjo';
     src: url('fonts/부크크명조_얇은글씨.woff') format('woff');
   }
+
+
+  @font-face {
+  font-family: 'KimNamyun';
+  src: url('fonts/KimNamyun.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cafe24Oneprettynight';
+  src: url('fonts/Cafe24Oneprettynight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
