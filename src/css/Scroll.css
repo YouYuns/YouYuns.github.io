@@ -1,0 +1,41 @@
+.image-gallery {
+  width: 320px;
+}
+
+
+.image-gallery-fullscreen-button .image-gallery-svg, 
+.image-gallery-play-button .image-gallery-svg {
+  display: none;
+}
+
+.image-gallery-thumbnail-image {
+  /* display: none; */
+}
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 화면 전체 높이 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* 이미지가 커져도 화면 밖으로 안 나가게 */
+  padding: 0; /* 필요시 0으로 */
+}
+
+
+.gallery-item {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}

@@ -1,0 +1,71 @@
+.image-gallery {
+  width: 320px;
+}
+
+
+.image-gallery-fullscreen-button .image-gallery-svg, 
+.image-gallery-play-button .image-gallery-svg {
+  display: none;
+}
+
+.image-gallery-thumbnail-image {
+  /* display: none; */
+}
+
+/* 갤러리 전체 폭 (모바일 기준) */
+.image-gallery {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* 슬라이드 영역 높이 고정 */
+.image-gallery-slide-wrapper {
+  height: 420px; /* 🔥 여기 조절 */
+}
+
+/* 슬라이드 기준점 고정 */
+.image-gallery-slide {
+  position: relative;
+  height: 420px; /* wrapper랑 동일 */
+  overflow: hidden;
+}
+
+/* 이미지 절대 위치 고정 */
+.image-gallery-slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.image-gallery {
+  width: 320px;
+}
+
+
+.image-gallery-fullscreen-button .image-gallery-svg, 
+.image-gallery-play-button .image-gallery-svg {
+  display: none;
+}
+
+.image-gallery-thumbnail-image {
+  /* display: none; */
+}
+
+/* 갤러리 전체 폭 (모바일 기준) */
+.image-gallery {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+
+/* 이미지 비율 제어 */
+.image-gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ⭐ 중요 */
+  border-radius: 16px;
+}
