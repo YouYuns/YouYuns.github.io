@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import flower from '../images/flower.png';
 
 /* CalendarDay Props */
 interface CalendarDayProps {
@@ -82,8 +81,8 @@ const Calendar: React.FC = () => {
 
   return (
     <div className="container calendar">
-      <img src={flower} className="flower" alt="flower" />
-
+      <div className="contact__sub_title">Calendar Info</div>
+      <div className="contact__title">웨딩날짜</div>
       <h3>2026년 11월 14일 토요일 오후 3시</h3>
 
       <div className="calendar__line"></div>
@@ -119,7 +118,7 @@ const Calendar: React.FC = () => {
       </div>
 
       <div>
-        신랑♥신부의 결혼식{' '}
+        성호♥소리의 결혼식{' '}
         <span className="calendar__remain-day">{timeLeft.days}일</span> 전
       </div>
     </div>

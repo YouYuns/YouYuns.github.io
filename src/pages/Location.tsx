@@ -52,7 +52,8 @@ const Location: React.FC = () => {
 
   return (
     <div className="container">
-      <div className="title">오시는 길</div>
+      <div className="contact__sub_title">Directions Info</div>
+      <div className="contact__title">오시는 길</div>
 
       <div className="location__details">
         <div>디노체컨벤션</div>
@@ -74,9 +75,19 @@ const Location: React.FC = () => {
         </div>
       </div>
 
-      <div className="location__info">
-        <div>지하철 왕십리역 도보 1~2분 거리</div>
+     <div className="location__info">
+      <div>지하철 왕십리역 도보 1~2분 거리</div>
+      <div style={{ marginTop: '8px' }}>
+        <a 
+          href="https://troubled-muskmelon-9ba.notion.site/ATM-29a0a969db72801aa689e6492a374a28" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{ color: 'rgba(187, 79, 97, 1)', textDecoration: 'underline' }}
+        >
+         웨딩홀 위치 & ATM 위치 자세히 보기
+        </a>
       </div>
+    </div>
     </div>
   );
 };

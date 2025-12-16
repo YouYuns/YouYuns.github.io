@@ -1,10 +1,7 @@
 
-  .calendar {
-    font-size: x-large;
-  }
 
   .calendar__line {
-    width: 330px;
+    width: 100%;
     height: 1px;
     background-color: rgb(192, 99, 99);
   }
@@ -19,7 +16,7 @@
   .calendar__weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    width: 350px;
+    width: 300px;
     margin-top: 20px;
     margin-bottom: 15px;
   }

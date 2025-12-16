@@ -33,8 +33,9 @@ import Navigator from './components/Navigator';
 
 function App() {
 
-  const galleryRef = useRef<HTMLDivElement>(null);
+  const galleryTopRef = useRef<HTMLDivElement>(null);
   const locationRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
@@ -49,16 +50,19 @@ function App() {
     <div className="App">
       {/* {isModalOpen && <SurveyModal closeModal={closeModal} />} */}
       <Navigator
-          scrollToGalleryTop={() => scrollTo(galleryRef)}
+          scrollToGalleryTop={() => scrollTo(galleryTopRef)}
           scrollToLocation={() => scrollTo(locationRef)}
+          scrollToGallery={() => scrollTo(galleryRef)}
           scrollToContact={() => scrollTo(contactRef)}
         />
-      <div ref={galleryRef} className="section">
-        <Scroll />
+      <div ref={galleryTopRef} className="section">
+          <Scroll />
       </div>
       {/* <Cover /> */}
-      <Invitation />
-      <ImgGallery />
+          <Invitation />
+      <div ref={galleryRef} className="section">
+         <ImgGallery />
+      </div>
       <Calendar />
       <div ref={locationRef} className="section">
         <Location />
