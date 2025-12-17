@@ -16,15 +16,15 @@ import './css/Modal.css';
 import './css/SurveryModal.css';
 
 import Invitation from './pages/Invitation';
-import Calendar from './pages/Calendar';
+// import Calendar from './pages/Calendar';
 import Account from './pages/Account';
-import Contact from './pages/Contact';
-import Location from './pages/Location';
+// import Contact from './pages/Contact';
+// import Location from './pages/Location';
 // import ImgGallery from './pages/ImgGallery';
 import Scroll from './pages/Scroll';
 import Footer from './components/Footer';
 import Navigator from './components/Navigator';
-import ImgGallery from './pages/ImgGallery';
+// import ImgGallery from './pages/ImgGallery';
 
 function App() {
 
@@ -66,17 +66,17 @@ function App() {
 
       <Invitation />
 
-      <Calendar />
-      <div ref={galleryRef} className="section">
+      {/* <Calendar /> */}
+      {/* <div ref={galleryRef} className="section">
         <ImgGallery />
-      </div>
-      <div ref={locationRef} className="section">
+      </div> */}
+      {/* <div ref={locationRef} className="section">
         <Location />
-      </div>
+      </div> */}
 
-      <div ref={contactRef} className="section">
+      {/* <div ref={contactRef} className="section">
         <Contact />
-      </div>
+      </div> */}
 
       <Account />
       <Footer />
