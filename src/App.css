@@ -6,7 +6,6 @@
 .title {
   font-size: xx-large;
 }
-
 .container {
   margin: 20px 10% 20px;
   padding: 35px 0;
@@ -15,7 +14,11 @@
   justify-content: center;
   align-items: center;
 }
-
+html, body {
+  overflow-y: auto;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
 .flower {
   width: 150px;
 }
@@ -30,4 +33,10 @@ button {
 
 .bc-pink {
   background-color: #fdf7f7;;
+}
+
+#scroll-container {
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }

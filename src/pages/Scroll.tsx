@@ -4,9 +4,12 @@ import p2 from '../images/2.jpg';
 import p3 from '../images/3.jpg';
 import p4 from '../images/4.jpg';
 import p5 from '../images/5.jpg';
+import p6 from '../images/6.jpg';
+import p7 from '../images/7.jpg';
+import p8 from '../images/8.jpg';
 import '../css/Gallery.css';
 
-const images = [p1, p2, p3, p4, p5];
+const images = [p1, p2, p3, p4, p5, p6, p7, p8];
 const MAX_SCALE = 1.3;
 const IMAGE_SCROLL_RATIO = 1.0;
 

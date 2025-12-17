@@ -24,7 +24,7 @@ import Location from './pages/Location';
 import Scroll from './pages/Scroll';
 import Footer from './components/Footer';
 import Navigator from './components/Navigator';
-import ImgGallery from './pages/Scroll';
+import ImgGallery from './pages/ImgGallery';
 
 function App() {
 

@@ -15,11 +15,11 @@
 .gallery-container {
   position: relative;
   width: 100%;
-  height: 600px; /* 화면 전체 높이 */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* 이미지가 커져도 화면 밖으로 안 나가게 */
+  overflow: visible;
   padding: 0; /* 필요시 0으로 */
 }
 
