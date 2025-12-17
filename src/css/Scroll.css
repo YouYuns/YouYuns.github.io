@@ -1,54 +1,41 @@
-.image-gallery {
-  width: 320px;
-}
-
-
-.image-gallery-fullscreen-button .image-gallery-svg, 
-.image-gallery-play-button .image-gallery-svg {
-  display: none;
-}
-
-.image-gallery-thumbnail-image {
-  /* display: none; */
-}
-
 .gallery-container {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: visible;
-  padding: 0; /* 필요시 0으로 */
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-
+/* 3D 공간 안에 있는 아이템 */
 .gallery-item {
-  position: relative;
-  width: 300px;
-  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 45%;   /* 🔥 비율용 */
+  margin: 0;
+  left: 0;
+  top: 0;
+
   display: flex;
-  flex-direction: column; /* ← 세로 정렬 */
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;    /* 이미지 중앙 정렬 */
-  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+
 }
 
+/* 이미지 */
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+}
+
+/* 텍스트 */
 .gallery-item .caption {
-  margin-top: 15px; /* 이미지와 글자 사이 간격 */
+  margin-top: 15px;
   text-align: center;
   font-family: KimNamyun, sans-serif;
   font-size: 1.2rem;
   line-height: 25px;
   color: #333;
 }
-
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  display: block;
-}
-
-

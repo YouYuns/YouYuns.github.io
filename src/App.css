@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  min-height: calc(var(--vh) * 100);
 }
 
 .title {
@@ -13,6 +12,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.main_container{
+  position: relative;
+  height: 10000px;
+  
 }
 html, body {
   overflow-y: auto;
