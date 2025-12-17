@@ -22,7 +22,7 @@ import Calendar from './pages/Calendar';
 import Account from './pages/Account';
 import Contact from './pages/Contact';
 import Location from './pages/Location';
-import ImgGallery from './pages/ImgGallery';
+// import ImgGallery from './pages/ImgGallery';
 import Scroll from './pages/Scroll';
 import Footer from './components/Footer';
 import Navigator from './components/Navigator';
@@ -60,9 +60,9 @@ function App() {
       </div>
       {/* <Cover /> */}
           <Invitation />
-      <div ref={galleryRef} className="section">
+      {/* <div ref={galleryRef} className="section">
          <ImgGallery />
-      </div>
+      </div> */}
       <Calendar />
       <div ref={locationRef} className="section">
         <Location />
