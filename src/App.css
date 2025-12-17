@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  
+  min-height: calc(var(--vh) * 100);
 }
 
 .title {

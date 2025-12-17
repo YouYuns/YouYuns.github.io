@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-
+import React, { useRef, useEffect } from 'react';
 
 import './App.css';
 import './css/Cover.css';
@@ -16,7 +15,6 @@ import './css/Account.css';
 import './css/Modal.css';
 import './css/SurveryModal.css';
 
-
 import Invitation from './pages/Invitation';
 import Calendar from './pages/Calendar';
 import Account from './pages/Account';
@@ -26,12 +24,23 @@ import Location from './pages/Location';
 import Scroll from './pages/Scroll';
 import Footer from './components/Footer';
 import Navigator from './components/Navigator';
-// import SurveyModal from './components/SurveyModal';
-// import Submit from './pages/Submit';
-// import Comment from './pages/Comment';
-// import Quiz from './pages/Quiz';
+import ImgGallery from './pages/Scroll';
 
 function App() {
+
+  useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty(
+        '--vh',
+        `${window.innerHeight * 0.01}px`
+      );
+    };
+
+    setVh();
+    window.addEventListener('resize', setVh);
+
+    return () => window.removeEventListener('resize', setVh);
+  }, []);
 
   const galleryTopRef = useRef<HTMLDivElement>(null);
   const locationRef = useRef<HTMLDivElement>(null);
@@ -39,40 +48,36 @@ function App() {
   const contactRef = useRef<HTMLDivElement>(null);
 
   const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    ref.current?.scrollIntoView({ behavior: 'auto' });
   };
-  // const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // 모달 상태 타입 지정
-
-  // const closeModal = () => setIsModalOpen(false);
-  // const openModal = () => setIsModalOpen(true);
 
   return (
     <div className="App">
-      {/* {isModalOpen && <SurveyModal closeModal={closeModal} />} */}
       <Navigator
-          scrollToGalleryTop={() => scrollTo(galleryTopRef)}
-          scrollToLocation={() => scrollTo(locationRef)}
-          scrollToGallery={() => scrollTo(galleryRef)}
-          scrollToContact={() => scrollTo(contactRef)}
-        />
+        scrollToGalleryTop={() => scrollTo(galleryTopRef)}
+        scrollToLocation={() => scrollTo(locationRef)}
+        scrollToGallery={() => scrollTo(galleryRef)}
+        scrollToContact={() => scrollTo(contactRef)}
+      />
+
       <div ref={galleryTopRef} className="section">
-          <Scroll />
+        <Scroll />
       </div>
-      {/* <Cover /> */}
-          <Invitation />
-      {/* <div ref={galleryRef} className="section">
-         <ImgGallery />
-      </div> */}
+
+      <Invitation />
+
       <Calendar />
+      <div ref={galleryRef} className="section">
+        <ImgGallery />
+      </div>
       <div ref={locationRef} className="section">
         <Location />
       </div>
-      {/* <Submit openModal={openModal} /> */}
-      {/* <Quiz />
-      <Comment />}*/}
-       <div ref={contactRef} className="section">
+
+      <div ref={contactRef} className="section">
         <Contact />
       </div>
+
       <Account />
       <Footer />
     </div>
