@@ -10,11 +10,12 @@ import p8 from '../images/8.jpg';
 
 const images = [p1, p2, p3, p4, p5, p6, p7, p8];
 
-const IMAGE_UNIT = 1150;        // 이미지당 스크롤 길이
-const START_Z = -5000;         // 시작 깊이
+const IMAGE_UNIT_FIRST = 200;
+const IMAGE_UNIT_OTHERS = 1150;
+const START_Z = -5000;
 const END_Z = 0;
-const START_Z_FIRST = -500; // 첫 번째 이미지 시작 깊이
-const START_Z_OTHERS = START_Z; // 나머지는 기존 START_Z
+const START_Z_FIRST = -500;
+const START_Z_OTHERS = START_Z;
 const imageTexts = [
   '',
   <>성호 그리고 소리<br />저희 결혼합니다.</>,
@@ -26,51 +27,55 @@ const imageTexts = [
   '',
 ];
 
+const easeInOut = (t: number) => t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; // easing 함수
+
 const Scroll: React.FC = () => {
-  const [zs, setZs] = useState<number[]>(
-    images.map((_, i) => (i === 0 ? 0 : START_Z))
-  );
-  const [opacities, setOpacities] = useState<number[]>(
-    images.map((_, i) => (i === 0 ? 1 : 0))
-  );
+  const [zs, setZs] = useState<number[]>(images.map((_, i) => (i === 0 ? 0 : START_Z)));
+  const [opacities, setOpacities] = useState<number[]>(images.map((_, i) => (i === 0 ? 1 : 0)));
 
   useEffect(() => {
     const onScroll = () => {
       const scrollY = window.scrollY;
-
       const newZs: number[] = [];
       const newOpacities: number[] = [];
 
-  images.forEach((_, index) => {
-          const start = index * IMAGE_UNIT;
-          const end = start + IMAGE_UNIT;
+      let accumulatedScroll = 0;
 
-          const baseZ = index === 0 ? START_Z_FIRST : START_Z_OTHERS;
-          let z = baseZ;
-          let opacity = 0;
+      images.forEach((_, index) => {
+        const unit = index === 0 ? IMAGE_UNIT_FIRST : IMAGE_UNIT_OTHERS;
+        const start = accumulatedScroll;
+        const end = start + unit;
 
-          if (scrollY < start) {
-            newZs.push(baseZ);
-            newOpacities.push(index === 0 ? 1 : 0);
-            return;
-          }
+        const baseZ = index === 0 ? START_Z_FIRST : START_Z_OTHERS;
+        let z = baseZ;
+        let opacity = 0;
 
-          if (scrollY > end) {
-            newZs.push(END_Z);
-            newOpacities.push(0);
-            return;
-          }
+        if (scrollY < start) {
+          newZs.push(baseZ);
+          newOpacities.push(index === 0 ? 1 : 0);
+          accumulatedScroll += unit;
+          return;
+        }
 
-         const progress = Math.min(Math.max((scrollY - start) / IMAGE_UNIT, 0), 1);
-        const easedProgress = index === 0 ? Math.pow(progress, 0.5) : progress;
+        if (scrollY > end) {
+          newZs.push(END_Z);
+          newOpacities.push(0);
+          accumulatedScroll += unit;
+          return;
+        }
+
+        const progress = Math.min(Math.max((scrollY - start) / unit, 0), 1);
+        const easedProgress = easeInOut(progress); // 모든 이미지에 easing 적용
         z = baseZ + easedProgress * (END_Z - baseZ);
 
-          // 🔹 opacity 계산
-          opacity = progress > 1 ? 1 - (progress - 1) / 0.15 : 1;
+        // opacity 계산
+        opacity = progress > 0.85 ? 1 - (progress - 0.85) / 0.15 : 1;
 
-          newZs.push(z);
-          newOpacities.push(opacity);
-        });
+        newZs.push(z);
+        newOpacities.push(opacity);
+
+        accumulatedScroll += unit;
+      });
 
       setZs(newZs);
       setOpacities(newOpacities);
@@ -78,19 +83,11 @@ const Scroll: React.FC = () => {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        pointerEvents: 'none',
-        perspective: '1200px',
-      }}
-    >
+    <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', perspective: '1200px' }}>
       {images.map((img, index) => (
         <div
           key={index}
@@ -106,12 +103,7 @@ const Scroll: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          <img
-            src={img}
-            alt={`gallery-${index}`}
-            style={{ width: '100%', borderRadius: '16px' }}
-          />
-
+          <img src={img} alt={`gallery-${index}`} style={{ width: '100%', borderRadius: '16px' }} />
           <div
             style={{
               marginTop: '15px',
