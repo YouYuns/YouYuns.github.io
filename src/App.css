@@ -31,3 +31,6 @@ button {
 .bc-pink {
   background-color: #fdf7f7;;
 }
+.container, .gallery, .calendar, .account {
+  overflow-anchor: none;
+}

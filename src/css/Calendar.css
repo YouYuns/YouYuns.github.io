@@ -65,13 +65,21 @@
     margin: 20px 0;
     border: 1px dotted rgb(95, 25, 25);
     padding: 20px 15px;
+     display: flex;
+  gap: 8px;
+  min-height: 24px; /* 숫자 크기보다 약간 여유있게 */
   }
 
   .calendar__remain span {
     margin-right: 10px;
+    display: inline-block;
+  width: 40px; /* 숫자 폭 고정 */
+  text-align: center;
   }
 
   .calendar__remain-day {
     color: rgb(218, 82, 82);
     font-weight: bold;
   }
+
+ 
