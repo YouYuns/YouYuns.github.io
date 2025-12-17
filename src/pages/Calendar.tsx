@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/Calendar.css'; // 스타일 분리
 
 /* CalendarDay Props */
@@ -48,23 +48,34 @@ const Calendar: React.FC = () => {
     (_, index) => index + 1
   );
 
- 
-const calculateTimeLeft = (): TimeLeft => {
-  const now = new Date();
-  const target = new Date(2026, 10, 14, 15, 0, 0);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0
+  });
 
-  const diff = target.getTime() - now.getTime();
+  useEffect(() => {
+    const updateTimer = () => {
+      const now = new Date();
+      const target = new Date(2026, 10, 14, 15, 0, 0);
 
-  if (diff <= 0) {
-    return { days: 0, hours: 0 };
-  }
+      const diff = target.getTime() - now.getTime();
 
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-  };
-};
- const [timeLeft] = useState<TimeLeft>(() => calculateTimeLeft());
+      if (diff <= 0) {
+        setTimeLeft({ days: 0, hours: 0 });
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+      });
+    };
+
+    const timer = setInterval(updateTimer, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="container calendar" style={{ overflowAnchor: 'none' }}> {/* ⭐ overflow-anchor 추가 */}
       <div className="contact__sub_title">Calendar Info</div>
