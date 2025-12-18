@@ -22,6 +22,10 @@ import Contact from './pages/Contact';
 import Location from './pages/Location';
 import ImgGallery from './pages/ImgGallery';
 import Scroll from './pages/Scroll';
+import Rsvp from './pages/Rsvp';
+
+
+
 import Footer from './components/Footer';
 import Navigator from './components/Navigator';
 import Snowfall from 'react-snowfall';
@@ -97,6 +101,7 @@ function App() {
         <Contact />
       </div>
 
+      <Rsvp />
       <Account />
       <Footer />
     </div>

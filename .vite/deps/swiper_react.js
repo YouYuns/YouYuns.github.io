@@ -1,4 +1,7 @@
 import {
+  require_react
+} from "./chunk-HWMK2RSU.js";
+import {
   animateCSSModeScroll,
   createElement,
   deleteProps,
@@ -20,9 +23,6 @@ import {
   setInnerHTML,
   showWarning
 } from "./chunk-NBQCNOND.js";
-import {
-  require_react
-} from "./chunk-HWMK2RSU.js";
 import {
   __toESM
 } from "./chunk-5WRI5ZAA.js";

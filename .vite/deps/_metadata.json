@@ -1,67 +1,88 @@
 {
-  "hash": "ea75e0c3",
+  "hash": "7316aa33",
   "configHash": "56d227dc",
-  "lockfileHash": "0da78afa",
-  "browserHash": "b1802693",
+  "lockfileHash": "a295206c",
+  "browserHash": "4360136e",
   "optimized": {
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "575816bd",
+      "fileHash": "296fea75",
       "needsInterop": true
     },
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "60da1ff4",
+      "fileHash": "5529a630",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "57b49e10",
+      "fileHash": "17a55cc1",
       "needsInterop": true
     },
     "swiper/react": {
       "src": "../../node_modules/swiper/swiper-react.mjs",
       "file": "swiper_react.js",
-      "fileHash": "49213d50",
+      "fileHash": "8089041b",
       "needsInterop": false
     },
     "swiper/modules": {
       "src": "../../node_modules/swiper/modules/index.mjs",
       "file": "swiper_modules.js",
-      "fileHash": "86d902f5",
+      "fileHash": "ba8e1581",
       "needsInterop": false
     },
     "react-snowfall": {
       "src": "../../node_modules/react-snowfall/lib/index.js",
       "file": "react-snowfall.js",
-      "fileHash": "cb243f12",
+      "fileHash": "a7c7f9b7",
       "needsInterop": false
     },
     "react-calendar": {
       "src": "../../node_modules/react-calendar/dist/index.js",
       "file": "react-calendar.js",
-      "fileHash": "3534cf6e",
+      "fileHash": "d8d1e79a",
       "needsInterop": false
     },
     "yet-another-react-lightbox": {
       "src": "../../node_modules/yet-another-react-lightbox/dist/index.js",
       "file": "yet-another-react-lightbox.js",
-      "fileHash": "ab0c9be8",
+      "fileHash": "4e3bbe1d",
+      "needsInterop": false
+    },
+    "firebase/firestore": {
+      "src": "../../node_modules/firebase/firestore/dist/esm/index.esm.js",
+      "file": "firebase_firestore.js",
+      "fileHash": "7a9df707",
+      "needsInterop": false
+    },
+    "firebase/app": {
+      "src": "../../node_modules/firebase/app/dist/esm/index.esm.js",
+      "file": "firebase_app.js",
+      "fileHash": "20c6d735",
+      "needsInterop": false
+    },
+    "firebase/analytics": {
+      "src": "../../node_modules/firebase/analytics/dist/esm/index.esm.js",
+      "file": "firebase_analytics.js",
+      "fileHash": "73c16e18",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-WGIKL77R": {
+      "file": "chunk-WGIKL77R.js"
+    },
     "chunk-N5YWJDII": {
       "file": "chunk-N5YWJDII.js"
     },
-    "chunk-NBQCNOND": {
-      "file": "chunk-NBQCNOND.js"
-    },
     "chunk-HWMK2RSU": {
       "file": "chunk-HWMK2RSU.js"
+    },
+    "chunk-NBQCNOND": {
+      "file": "chunk-NBQCNOND.js"
     },
     "chunk-5WRI5ZAA": {
       "file": "chunk-5WRI5ZAA.js"
