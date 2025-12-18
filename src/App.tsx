@@ -50,7 +50,7 @@ function App() {
  const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
   if (!ref.current) return;
 
-  const offset = 100; // 네비게이션 높이만큼 여유
+  const offset = 80; // 네비게이션 높이만큼 여유
   const top = ref.current.getBoundingClientRect().top + window.scrollY - offset;
 
   window.scrollTo({

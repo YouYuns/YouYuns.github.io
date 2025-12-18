@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs, Navigation } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 import "swiper/css/navigation";
 import "swiper/css";
@@ -17,6 +19,8 @@ import p8 from "../images/8.jpg";
 const ImgGallery: React.FC = () => {
   const images = [p1, p2, p3, p5, p6, p7, p8];
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+  const [open, setOpen] = useState(false);
+    const [index, setIndex] = useState(0);
 
   return (
     <div className="container between_space">
@@ -36,6 +40,10 @@ const ImgGallery: React.FC = () => {
               src={img}
               alt={`slide-${idx}`}
               style={{ width: "100%", borderRadius: "16px" }}
+               onClick={() => {
+                  setIndex(idx);   
+                  setOpen(true);    
+                }}
             />
           </SwiperSlide>
         ))}
@@ -58,11 +66,19 @@ const ImgGallery: React.FC = () => {
               src={img}
               alt={`thumb-${idx}`}
               style={{ width: "100%", cursor: "pointer" }}
+              
             />
           </SwiperSlide>
         ))}
       </Swiper>
     </div>
+
+     <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        index={index}
+        slides={images.map((img) => ({ src: img }))}
+      />
     </div>
   );
 };

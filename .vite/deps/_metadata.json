@@ -1,58 +1,67 @@
 {
-  "hash": "cf1b331a",
+  "hash": "ea75e0c3",
   "configHash": "56d227dc",
-  "lockfileHash": "bc20ba4f",
-  "browserHash": "1a4eb793",
+  "lockfileHash": "0da78afa",
+  "browserHash": "b1802693",
   "optimized": {
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "03917067",
+      "fileHash": "575816bd",
       "needsInterop": true
     },
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "2e4c9972",
+      "fileHash": "60da1ff4",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "2fdf6499",
+      "fileHash": "57b49e10",
       "needsInterop": true
     },
     "swiper/react": {
       "src": "../../node_modules/swiper/swiper-react.mjs",
       "file": "swiper_react.js",
-      "fileHash": "9e6bf280",
+      "fileHash": "49213d50",
       "needsInterop": false
     },
     "swiper/modules": {
       "src": "../../node_modules/swiper/modules/index.mjs",
       "file": "swiper_modules.js",
-      "fileHash": "a6931b61",
+      "fileHash": "86d902f5",
       "needsInterop": false
     },
     "react-snowfall": {
       "src": "../../node_modules/react-snowfall/lib/index.js",
       "file": "react-snowfall.js",
-      "fileHash": "c0cdb067",
+      "fileHash": "cb243f12",
       "needsInterop": false
     },
     "react-calendar": {
       "src": "../../node_modules/react-calendar/dist/index.js",
       "file": "react-calendar.js",
-      "fileHash": "e6b3ecae",
+      "fileHash": "3534cf6e",
+      "needsInterop": false
+    },
+    "yet-another-react-lightbox": {
+      "src": "../../node_modules/yet-another-react-lightbox/dist/index.js",
+      "file": "yet-another-react-lightbox.js",
+      "fileHash": "ab0c9be8",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-HWMK2RSU": {
-      "file": "chunk-HWMK2RSU.js"
+    "chunk-N5YWJDII": {
+      "file": "chunk-N5YWJDII.js"
     },
     "chunk-NBQCNOND": {
       "file": "chunk-NBQCNOND.js"
+    },
+    "chunk-HWMK2RSU": {
+      "file": "chunk-HWMK2RSU.js"
     },
     "chunk-5WRI5ZAA": {
       "file": "chunk-5WRI5ZAA.js"
