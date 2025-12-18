@@ -97,6 +97,7 @@ const Scroll: React.FC = () => {
             left: '50%',
             transform: `translate3d(-50%, -50%, ${zs[index]}px)`,
             opacity: opacities[index],
+            maxWidth: '480px',
             width: '100%',
             display: 'flex',
             flexDirection: 'column',

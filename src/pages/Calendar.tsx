@@ -80,7 +80,7 @@ const Calendar: React.FC = () => {
   }, []);
 
   return (
-    <div className="container calendar">
+    <div className="container calendar between_space">
       <div className="contact__sub_title">Calendar Info</div>
       <div className="contact__title">웨딩날짜</div>
       <h3>2026년 11월 14일 토요일 오후 3시</h3>

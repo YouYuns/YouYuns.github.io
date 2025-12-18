@@ -50,8 +50,8 @@ useEffect(() => {
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
-      .then(() => alert('클립보드에 계좌가 복사되었습니다.'))
-      .catch(() => alert('클립보드 복사가 실패했습니다.'));
+      .then()
+      .catch();
   };
 
 const renderContact = (contact: Contact, index: number, type: string) => (

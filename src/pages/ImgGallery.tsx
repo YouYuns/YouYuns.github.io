@@ -19,7 +19,11 @@ const ImgGallery: React.FC = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
-    <div style={{ width: "100%", maxWidth: "360px", margin: "0 auto" }}>
+    <div className="container between_space">
+    <div className="contact__sub_title">Photo Album</div>
+      <div className="contact__title">사진첩</div>
+
+    <div className= '' style={{ width: "100%", maxWidth: "360px", margin: "0 auto" }}>
       {/* Main Swiper */}
       <Swiper
         spaceBetween={10}
@@ -58,6 +62,7 @@ const ImgGallery: React.FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+    </div>
     </div>
   );
 };

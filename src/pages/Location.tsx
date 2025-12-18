@@ -53,7 +53,7 @@ const Location: React.FC = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container between_space">
       <div className="contact__sub_title">Directions Info</div>
       <div className="contact__title">오시는 길</div>
 

@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
     );
 
   return (
-    <div className='container'>
+    <div className='container between_space'>
       <div className='contact__sub_title'>Contact Information</div>
       <div className='contact__title'>연락처 확인하기</div>
 

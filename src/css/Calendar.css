@@ -2,6 +2,7 @@
 
   .calendar__line {
     width: 100%;
+    max-width: 480px;
     height: 1px;
     background-color: rgb(192, 99, 99);
   }

@@ -47,15 +47,23 @@ function App() {
   const galleryRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
-  const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
-    ref.current?.scrollIntoView({ behavior: 'auto' });
-  };
+ const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
+  if (!ref.current) return;
+
+  const offset = 100; // 네비게이션 높이만큼 여유
+  const top = ref.current.getBoundingClientRect().top + window.scrollY - offset;
+
+  window.scrollTo({
+    top,
+    behavior: 'smooth', // 부드럽게 스크롤
+  });
+};
 
   return (
     <div className="App">
        <Snowfall
         color="pink"       // 벚꽃 색상
-        snowflakeCount={20} // 개수
+        snowflakeCount={15} // 개수
         style={{
           position: 'fixed',
           width: '100vw',
