@@ -1,23 +1,42 @@
 /* ===== Overlay ===== */
 .rscv-modal-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  inset: 0; /* top:0, left:0, width/height 100% */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.rscv-modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ===== Modal Box ===== */
 .rscv-modal-content {
+  position: relative; /* 닫기 버튼 기준 */
   background: #fff;
   width: 90%;
-  max-width: 360px;
+  max-width: 500px;
+  max-height: 80%;
   padding: 24px 20px 20px;
   border-radius: 16px;
   box-sizing: border-box;
   font-size: 16px;
+  overflow-y: auto;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.rscv-modal-overlay.show .rscv-modal-content {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* ===== Step Progress Bar ===== */
@@ -25,7 +44,7 @@
   display: flex;
   overflow: hidden;
   border-radius: 8px;
-  margin-bottom: 16px;
+  margin: 25px 0 10px;
 }
 
 .step {
@@ -56,7 +75,7 @@
   margin-bottom: 12px;
 }
 
-/* ===== Modal Body (STEP3 포함) ===== */
+/* ===== Modal Body ===== */
 .rscv-modal-body {
   max-height: 60vh;
   overflow-y: auto;
@@ -128,7 +147,7 @@
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 6px; /* label과 input 간격 */
+  gap: 6px;
 }
 
 .input-title {
@@ -149,7 +168,7 @@
 
 .rscv-modal-content textarea {
   resize: none;
-  min-height: 100px;
+  min-height: 70px;
 }
 
 /* ===== STEP 3: 식사 여부 ===== */
@@ -183,15 +202,10 @@
   align-items: center;
 }
 
-.checkbox {
+.privacy-checkbox {
   display: flex;
   align-items: center;
-  font-size: 16px;
-  margin: 12px 0 16px;
-}
-
-.checkbox input {
-  margin-right: 8px;
+  cursor: pointer;
 }
 
 /* ===== 하단 버튼 ===== */
@@ -211,56 +225,30 @@
   border: none;
   font-size: 16px;
   cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
 }
 
 .rscv-modal-actions button:disabled {
   background: #ccc;
   cursor: not-allowed;
 }
-/* 효과 */
-.rscv-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
 
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+.rscv-modal-actions button:hover:enabled {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
 }
 
-.rscv-modal-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
+.rscv-modal-actions button:active:enabled {
+  transform: scale(0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0.8;
 }
 
-.rscv-modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 90%;
-  max-height: 80%;
-  overflow-y: auto;
-
-  transform: translateY(-20px);
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.rscv-modal-overlay.show .rscv-modal-content {
-  transform: translateY(0);
-  opacity: 1;
-}
+/* ===== Step Content Animation ===== */
 .step-content {
   opacity: 0;
-  transform: translateY(-10px); /* 아래에서 위로 -> 위에서 아래로 변경 */
+  transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -269,19 +257,29 @@
   transform: translateY(0);
 }
 
-/* modal-content 이미 위 -> 아래 적용되어 있음 */
-.rscv-modal-content {
-  transform: translateY(-20px); /* -20px로 위에서 아래로 */
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.rscv-modal-overlay.show .modal-content {
-  transform: translateY(0);
-  opacity: 1;
-}
-
+/* ===== Input Font ===== */
 .rscv-input-content {
-  font-family: KimNamyun, sans-serif;
-  font-size: 46px; /* 글자 크기 */
+  font-size: 46px;
+}
+
+/* ===== Close Button Hover & Click Effect ===== */
+.rscv-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.rscv-modal-close:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.rscv-modal-close:active {
+  transform: scale(1);
+  opacity: 0.6;
 }

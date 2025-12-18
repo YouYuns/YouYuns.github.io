@@ -49,3 +49,73 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== Modal Content ===== */
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  transform: scale(0.95);
+  animation: scaleIn 0.3s forwards;
+}
+
+@keyframes scaleIn {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ===== Buttons 공통 스타일 ===== */
+.call-button,
+.sms-button,
+.close-button {
+  display: inline-block;
+  margin: 10px 5px 0 0;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
+}
+
+/* Hover 시 살짝 커지고 그림자 */
+.call-button:hover,
+.sms-button:hover,
+.close-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+}
+
+/* 클릭 시 눌린 느낌 */
+.call-button:active,
+.sms-button:active,
+.close-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0.8;
+}
+
+/* 닫기 버튼만 색 다르게 */
+.close-button {
+  background-color: #ccc;
+  color: #333;
+}

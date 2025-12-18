@@ -6,6 +6,7 @@ import emptyIcon from "../images/empty-check-box.png";
 import "../css/RscvModal.css";
 import groomIcon from "../images/groom-icon.png";
 import brideIcon from "../images/bride-icon.png";
+import closeIcon from "../images/close-icon.png";
 
 type Side = "groom" | "bride";
 type Attendance = "yes" | "no";
@@ -38,7 +39,16 @@ const RscvModal: React.FC<RscvModalProps> = ({ closeModal }) => {
     const timeout = setTimeout(() => setShow(true), 10);
     return () => clearTimeout(timeout);
   }, []);
+  useEffect(() => {
+    // 모달 열리면 스크롤 막기
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden"; // html도 막기
 
+    return () => {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+    };
+  }, []);
   const submitAttendance = async () => {
     const newErrors: { name?: string; phone?: string; people?: string } = {};
 
@@ -95,6 +105,14 @@ const RscvModal: React.FC<RscvModalProps> = ({ closeModal }) => {
       onClick={closeModal}
     >
       <div className="rscv-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="rscv-close-btn {">
+          <img
+            src={closeIcon}
+            alt="close"
+            className="rscv-modal-close"
+            onClick={closeModal}
+          />
+        </div>
         {/* 🔹 진행 바 */}
         <div className="step-bar">
           <div className={`step ${step >= 1 ? "active" : ""}`} />
@@ -268,7 +286,7 @@ const RscvModal: React.FC<RscvModalProps> = ({ closeModal }) => {
                 {/* 전달 메시지 */}
                 <p className="input-title">전달 사항 (선택)</p>
                 <textarea
-                  placeholder="신랑신부에게 전하고 싶은 메시지를 입력해주세요"
+                  placeholder="전하고 싶은 메시지를 입력해주세요!"
                   className="rscv-input-content"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
