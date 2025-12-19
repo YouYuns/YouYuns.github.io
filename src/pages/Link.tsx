@@ -41,18 +41,20 @@ declare global {
 }
 
 const LinkShare: React.FC = () => {
-  const urlToShare = window.location.href;
+  const urlToShare = "https://youyuns.github.io/merry/";
   const JS_KEY = "6bbdbe14cfee86bf2c09a3d16aa9bc79"; // 본인 JS 키
 
   useEffect(() => {
     // Kakao SDK 로드
     const script = document.createElement("script");
+
     script.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js";
     script.async = true;
     document.body.appendChild(script);
 
     script.onload = () => {
       const kakao = window.Kakao;
+      console.log("Kakao JS SDK version:", window.Kakao);
       if (!kakao.isInitialized()) kakao.init(JS_KEY);
     };
 
@@ -71,18 +73,18 @@ const LinkShare: React.FC = () => {
       content: {
         title: "청첩장 링크입니다!",
         description: "청첩장을 확인해보세요.",
-        imageUrl: "https://your-image-url.com/sample.jpg", // 공유 이미지 URL
+        imageUrl: "https://youyuns.github.io/merry/1.jpg",
         link: {
-          webUrl: urlToShare,
-          mobileWebUrl: urlToShare,
+          webUrl: "https://youyuns.github.io/merry/",
+          mobileWebUrl: "https://youyuns.github.io/merry/",
         },
       },
       buttons: [
         {
           title: "청첩장 확인",
           link: {
-            webUrl: urlToShare,
-            mobileWebUrl: urlToShare,
+            webUrl: "https://youyuns.github.io/merry/",
+            mobileWebUrl: "https://youyuns.github.io/merry/",
           },
         },
       ],
