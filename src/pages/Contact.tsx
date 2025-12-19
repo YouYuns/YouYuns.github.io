@@ -6,8 +6,12 @@ import sMom from "../images/1.jpg";
 import sMain from "../images/Contact-2.jpg";
 import eMain from "../images/Contact-1.jpg";
 import eMom from "../images/1.jpg";
+import { useFadeUp } from "../hooks/useFadeUp";
 
 const Contact: React.FC = () => {
+  const { ref: titleRef, show: titleShow } = useFadeUp();
+  const { ref: contactRef, show: contactShow } = useFadeUp();
+
   const [modalInfo, setModalInfo] = useState<{
     name: string;
     phone: string;
@@ -46,35 +50,38 @@ const Contact: React.FC = () => {
 
   return (
     <div className="container between_space">
-      <div className="contact__sub_title">Contact Information</div>
-      <div className="contact__title">연락처 확인하기</div>
+      <div ref={titleRef} className={`fade-up ${titleShow ? "show" : ""}`}>
+        <div className="contact__sub_title">Contact Information</div>
+        <div className="contact__title">연락처 확인하기</div>
+      </div>
 
-      <div className=" account-container">
-        <div className="profiles">
-          <div className="profile-group">
-            <div className="main-person">
-              {renderPerson(groom.main, "groom-main")}
+      <div ref={contactRef} className={`fade-up ${contactShow ? "show" : ""}`}>
+        <div className=" account-container">
+          <div className="profiles">
+            <div className="profile-group">
+              <div className="main-person">
+                {renderPerson(groom.main, "groom-main")}
+              </div>
+              <div className="family-persons">
+                {groom.family.map((person, i) =>
+                  renderPerson(person, `groom-${i}`)
+                )}
+              </div>
             </div>
-            <div className="family-persons">
-              {groom.family.map((person, i) =>
-                renderPerson(person, `groom-${i}`)
-              )}
-            </div>
-          </div>
 
-          <div className="profile-group">
-            <div className="main-person">
-              {renderPerson(bride.main, "bride-main")}
-            </div>
-            <div className="family-persons">
-              {bride.family.map((person, i) =>
-                renderPerson(person, `bride-${i}`)
-              )}
+            <div className="profile-group">
+              <div className="main-person">
+                {renderPerson(bride.main, "bride-main")}
+              </div>
+              <div className="family-persons">
+                {bride.family.map((person, i) =>
+                  renderPerson(person, `bride-${i}`)
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       {/* 모달 */}
       {modalInfo && (
         <ContactModal
