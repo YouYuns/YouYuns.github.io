@@ -28,6 +28,7 @@ const Navigator: React.FC<NavigatorProps> = ({
 
   useEffect(() => {
     const audio = audioRef.current;
+    audio.loop = true;
     if (isPlaying) {
       audio.play();
     } else {
@@ -61,7 +62,9 @@ const Navigator: React.FC<NavigatorProps> = ({
     <div className="container-nav">
       {/* 처음 메시지 */}
       {showMessage && (
-        <div className="music-message fade-in-out">배경음악이 재생됩니다.</div>
+        <div className="music-message fade-in-out">
+          음소거 해제 시 배경음악이 재생됩니다.
+        </div>
       )}
 
       <nav className="top-nav">
@@ -87,8 +90,8 @@ const Navigator: React.FC<NavigatorProps> = ({
           onTouchEnd={() => setClicked(false)}
         >
           <img
-            src={isPlaying ? stopIcon : playIcon}
-            alt={isPlaying ? "Stop Music" : "Play Music"}
+            src={isPlaying ? playIcon : stopIcon}
+            alt={isPlaying ? "Play Music" : "Stop Music"}
             className={`music-btn ${clicked ? "clicked" : ""}`}
           />
         </div>

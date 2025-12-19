@@ -6,20 +6,38 @@ import downArrow from "../images/down-arrow-button.png";
 import { useFadeUp } from "../hooks/useFadeUp";
 declare global {
   interface Window {
-    kakao?: {
-      maps: {
-        load: (callback: () => void) => void;
-        LatLng: new (lat: number, lng: number) => unknown;
-        Map: new (
-          container: HTMLElement,
-          options: { center: unknown; level: number }
-        ) => unknown;
-        Marker: new (options: { position: unknown }) => {
-          setMap: (map: unknown) => void;
-        };
-      };
-    };
+    kakao?: KakaoStatic;
   }
+}
+
+interface KakaoStatic {
+  maps: {
+    load(callback: () => void): void;
+    LatLng: new (lat: number, lng: number) => LatLng;
+    Map: new (container: HTMLElement, options: MapOptions) => MapInstance;
+    Marker: new (options: MarkerOptions) => MarkerInstance;
+  };
+}
+
+interface LatLng {
+  getLat(): number;
+  getLng(): number;
+}
+interface MapOptions {
+  center: LatLng;
+  level: number;
+  draggable?: boolean;
+  scrollwheel?: boolean;
+  disableDoubleClick?: boolean;
+}
+interface MapInstance {
+  setCenter(center: LatLng): void;
+}
+interface MarkerOptions {
+  position: LatLng;
+}
+interface MarkerInstance {
+  setMap(map: MapInstance): void;
 }
 
 const Location: React.FC = () => {
@@ -35,20 +53,23 @@ const Location: React.FC = () => {
   const lng = 127.038394194396;
 
   useEffect(() => {
-    if (!mapRef.current || !window.kakao?.maps) return;
+    const container = mapRef.current;
+    if (!container) return; // container 없으면 종료
+    const kakao = window.kakao; // 변수에 저장
+    if (!kakao?.maps) return; // Kakao Map 로드 확인
 
-    window.kakao.maps.load(() => {
-      const center = new window.kakao!.maps.LatLng(lat, lng);
+    kakao.maps.load(() => {
+      const center = new kakao.maps.LatLng(lat, lng);
 
-      const map = new window.kakao!.maps.Map(mapRef.current!, {
+      const map = new kakao.maps.Map(container, {
         center,
-        level: 4, // 지도 확대 수준
+        level: 4,
+        draggable: false,
+        scrollwheel: false,
+        disableDoubleClick: true,
       });
 
-      const marker = new window.kakao!.maps.Marker({
-        position: center,
-      });
-
+      const marker = new kakao.maps.Marker({ position: center });
       marker.setMap(map);
     });
   }, []);
@@ -77,7 +98,19 @@ const Location: React.FC = () => {
           <div>서울 성동구 왕십리광장로 17 6~7층</div>
         </div>
         {/* 🗺 카카오 지도 */}
-        <div ref={mapRef} className="location__map" />
+        <div ref={mapRef} className="location__map">
+          <div className="location__map" ref={mapRef}>
+            <div
+              className="map-overlay"
+              style={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 10,
+                pointerEvents: "none", // 이벤트 투과
+              }}
+            />
+          </div>
+        </div>
 
         {/* 📍 카카오 지도 앱 / 웹 이동 */}
         <div className="location__map-icon-box">

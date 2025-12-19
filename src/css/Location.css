@@ -118,3 +118,6 @@
 .location__dropdown-content.open div {
   transform: translateY(0);
 }
+.location__map {
+  touch-action: pan-y; /* 세로 스크롤 허용, 가로 드래그 막기 */
+}
