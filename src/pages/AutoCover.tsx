@@ -65,7 +65,7 @@ const AutoCover: React.FC = () => {
      시작 타이머
   ========================= */
   useEffect(() => {
-    const timer = setTimeout(() => setStart(true), 3000);
+    const timer = setTimeout(() => setStart(true), 5000);
     return () => clearTimeout(timer);
   }, []);
 

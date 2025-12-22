@@ -52,12 +52,14 @@
 }
 
 .text-love {
+  font-family: BookkMyungjo, sans-serif;
   opacity: 0;
   font-size: 70px;
   animation: loveFromLeft 2.5s ease-out forwards;
 }
 
 .text-is {
+  font-family: BookkMyungjo, sans-serif;
   opacity: 0;
   font-size: 70px;
   animation: isFromRight 2.5s ease-out forwards;
@@ -74,6 +76,7 @@
 }
 
 .text-life {
+  font-family: BookkMyungjo, sans-serif;
   font-size: 70px;
   opacity: 0;
   animation: lifeFromRight 2.5s ease-out forwards;
@@ -178,7 +181,7 @@
     opacity: 0;
   }
   to {
-    transform: translateX(-55px);
+    transform: translateX(-75px);
     opacity: 1;
   }
 }
