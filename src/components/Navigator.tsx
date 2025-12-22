@@ -48,9 +48,35 @@ const Navigator: React.FC<NavigatorProps> = ({
   }, []);
 
   /* =========================
+     화면 활성화 상태에 따른 음악 제어
+  ========================= */
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      if (document.visibilityState === "visible") {
+        // 화면이 활성화되어 있고 음소거가 아니면 재생
+        if (!isMuted && audio.paused) {
+          audio.play().catch(() => {});
+        }
+      } else {
+        // 화면 비활성화 시 일시정지
+        if (!audio.paused) {
+          audio.pause();
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [audioRef, isMuted]);
+
+  /* =========================
      음악 버튼 클릭 / 터치
-     - 도움말 상태에서도 바로 재생
-     - navMode 변경과 독립적으로 음소거 상태 유지
   ========================= */
   const handleMusicClick = (e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation();
@@ -63,7 +89,7 @@ const Navigator: React.FC<NavigatorProps> = ({
     setIsMuted(nextMuted);
 
     // 음소거 해제 시 일시정지 상태면 바로 재생
-    if (!nextMuted && audio.paused) {
+    if (!nextMuted && audio.paused && document.visibilityState === "visible") {
       audio.play().catch(() => {});
     }
   };
