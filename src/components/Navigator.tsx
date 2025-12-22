@@ -54,13 +54,21 @@ const Navigator: React.FC<NavigatorProps> = ({
     const audio = audioRef.current;
     if (!audio) return;
 
-    const nextMuted = !isMuted;
-    audio.muted = nextMuted;
-
-    if (!nextMuted && audio.paused) {
-      audio.play().catch(() => {});
+    // ⭐ 최초 터치 (도움말 상태 포함)
+    if (audio.paused) {
+      audio.muted = false;
+      audio
+        .play()
+        .then(() => {
+          setIsMuted(false);
+        })
+        .catch(() => {});
+      return;
     }
 
+    // 이후부터는 일반 토글
+    const nextMuted = !isMuted;
+    audio.muted = nextMuted;
     setIsMuted(nextMuted);
   };
 
