@@ -1,0 +1,45 @@
+.autocover-container {
+  position: relative; /* 스크롤에 따라 내려가게 */
+  width: 100%;
+  max-width: 480px; /* 폭 제한 */
+  margin: 0 auto; /* 중앙 정렬 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden; /* 자식 절대 위치 필요 없으면 제거 가능 */
+}
+
+.autocover-item {
+  position: relative; /* absolute → relative */
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px; /* 이미지 사이 간격 */
+}
+
+.autocover-item.active {
+  opacity: 1;
+}
+
+.autocover-item img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+}
+
+.autocover-item .caption {
+  margin-top: 15px;
+  font-family: KimNamyun, sans-serif;
+  font-size: 1.8rem;
+  line-height: 40px;
+  text-align: center;
+  color: #333;
+}

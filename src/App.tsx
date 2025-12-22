@@ -15,6 +15,7 @@ import "./css/Account.css";
 import "./css/SurveryModal.css";
 import "./css/Rscvp.css";
 import "./css/Link.css";
+import "./css/Account.css";
 
 import Cover from "./pages/Cover";
 import Invitation from "./pages/Invitation";
@@ -23,7 +24,8 @@ import Account from "./pages/Account";
 import Contact from "./pages/Contact";
 import Location from "./pages/Location";
 import ImgGallery from "./pages/ImgGallery";
-import Scroll from "./pages/Scroll";
+// import Scroll from "./pages/Scroll";
+import AutoCover from "./pages/AutoCover";
 import Rsvp from "./pages/Rsvp";
 import Link from "./pages/Link";
 
@@ -159,7 +161,8 @@ function App() {
 
       <div className="main_container">
         <div ref={galleryTopRef} className="section">
-          <Scroll />
+          {/* <Scroll /> */}
+          <AutoCover />
         </div>
       </div>
 
