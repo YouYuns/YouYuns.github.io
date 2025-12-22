@@ -15,6 +15,7 @@
   "dependencies": {
     "firebase": "^12.7.0",
     "gh-pages": "^6.3.0",
+    "query-string": "^9.3.1",
     "react": "^19.2.0",
     "react-calendar": "^6.0.0",
     "react-dom": "^19.2.0",
@@ -31,6 +32,7 @@
     "@eslint/js": "^9.39.1",
     "@types/kakao-js-sdk": "^1.39.5",
     "@types/node": "^24.10.1",
+    "@types/query-string": "^6.2.0",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@types/react-image-gallery": "^1.2.4",

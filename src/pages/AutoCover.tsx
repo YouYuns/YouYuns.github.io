@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../css/AutoCover.css"; // CSS 파일 임포트
 import p1 from "../images/1.jpg";
 import p2 from "../images/2.jpg";
 import p3 from "../images/3.jpg";
@@ -22,17 +23,7 @@ const imageTexts = [
     저희 결혼합니다.
   </>,
   <>
-    가을 하늘처럼 맑고 깊은
-    <br /> 사랑으로 함께하겠습니다.
-  </>,
-  <>
-    <br /> 소중한 분들을 초대합니다.
-  </>,
-  <>
-    살아온 환경
-    <br />
-    좋아하는 것
-    <br />
+    살아온 환경, 좋아하는 것<br />
     취미, 성격도 다른 우리가
   </>,
   <>
@@ -41,11 +32,19 @@ const imageTexts = [
     나란히 걸어가려 합니다.
   </>,
   <>
+    그 이야기가 시작되는 순간에
+    <br />
+    함께 축하해 주시길 바랍니다.
+  </>,
+  <>
+    가을 하늘처럼 맑고 깊은
+    <br />
+    사랑으로 함께하겠습니다.
+  </>,
+  <>
     추웠던 겨울, 햇살 가득 선물처럼 찾아온
     <br />
-    소중한 사람과 함께
-    <br />
-    행복하게 살겠습니다.
+    소중한 사람과 함께 행복하게 살겠습니다.
   </>,
   <>
     기쁨과 설렘 가득한
@@ -55,76 +54,60 @@ const imageTexts = [
 
 const AutoCover: React.FC = () => {
   const [index, setIndex] = useState(0);
-
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [start, setStart] = useState(false);
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
-
-    return () => clearInterval(timer);
+    // 3초 후에 시작 (예: Cover 애니메이션 끝난 후)
+    const timer = setTimeout(() => {
+      setStart(true);
+    }, 3000); // 3000ms = 3초
+    return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (!start) return; // start가 false면 타이머 실행 안함
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 3800);
+    return () => clearInterval(interval);
+  }, [start]);
+
+  // 스크롤 감지
+  useEffect(() => {
+    const onScroll = () => {
+      if (!hasScrolled && window.scrollY > 5) {
+        setHasScrolled(true);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [hasScrolled]);
+
   return (
-    <div
-      className="autocover-container"
-      style={{
-        position: "relative", // 부모는 relative
-        width: "100%",
-        maxWidth: "480px",
-        margin: "0 auto",
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "20px",
-        boxSizing: "border-box",
-        overflow: "hidden",
-      }}
-    >
-      {images.map((img, i) => (
-        <div
-          key={i}
-          className={`autocover-item ${i === index ? "active" : ""}`}
-          style={{
-            position: "absolute", // 겹치게
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "100%",
-            maxWidth: "480px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            opacity: i === index ? 1 : 0,
-            transition: "opacity 1s ease-in-out",
-          }}
-        >
+    <>
+      <div className="autocover-container">
+        {images.map((img, i) => (
           <div
-            className="caption"
-            style={{
-              fontFamily: "KimNamyun, sans-serif",
-              fontSize: "1.8rem",
-              lineHeight: "40px",
-              textAlign: "center",
-              marginBottom: "20px",
-            }}
+            key={i}
+            className={`autocover-item ${i === index ? "active" : ""}`}
           >
-            {imageTexts[i]}
+            <div className="caption">{imageTexts[i]}</div>
+            <img src={img} alt={`auto-${i}`} />
           </div>
-          <img
-            src={img}
-            alt={`auto-${i}`}
-            style={{
-              width: "100%",
-              maxWidth: "480px",
-              borderRadius: "16px",
-              display: "block",
-              height: "auto",
-            }}
-          />
+        ))}
+      </div>
+
+      {!hasScrolled && (
+        <div className="scroll-guide">
+          <div className="arrow">
+            <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
+          </div>
+          <div className="arrow">
+            <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
+          </div>
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 };
 

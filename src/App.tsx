@@ -24,7 +24,7 @@ import Account from "./pages/Account";
 import Contact from "./pages/Contact";
 import Location from "./pages/Location";
 import ImgGallery from "./pages/ImgGallery";
-// import Scroll from "./pages/Scroll";
+import Scroll from "./pages/Scroll";
 import AutoCover from "./pages/AutoCover";
 import Rsvp from "./pages/Rsvp";
 import Link from "./pages/Link";
@@ -34,6 +34,7 @@ import Navigator from "./components/Navigator";
 import Snowfall from "react-snowfall";
 
 import myMusic from "./media/JOY_Je-Taime.mp3";
+import queryString from "query-string";
 
 function App() {
   /* ===========================
@@ -69,7 +70,7 @@ function App() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [showMusicOverlay, setShowMusicOverlay] = useState(true);
-
+  const [mode, setMode] = useState<"scroll" | "auto">("auto");
   const handleFirstInteraction = () => {
     if (!audioRef.current) {
       const audio = new Audio(myMusic);
@@ -123,6 +124,16 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const parsed = queryString.parse(window.location.search);
+    if (parsed.mode === "scroll" || parsed.mode === "auto") {
+      // 다음 tick에서 상태 변경
+      setTimeout(() => {
+        setMode(parsed.mode as "scroll" | "auto");
+      }, 0);
+    }
+  }, []);
+
   return (
     <div className="App">
       {/* 🔥 전체 화면 음악 오버레이 */}
@@ -159,11 +170,16 @@ function App() {
         scrollToContact={() => scrollTo(contactRef)}
       />
 
-      <div className="main_container">
-        <div ref={galleryTopRef} className="section">
-          {/* <Scroll /> */}
-          <AutoCover />
-        </div>
+      <div
+        ref={galleryTopRef}
+        style={{
+          position: "relative",
+          maxWidth: "480px",
+          width: "100%",
+          height: mode === "auto" ? "100vh" : "8700px",
+        }}
+      >
+        {mode === "scroll" ? <Scroll /> : <AutoCover />}
       </div>
 
       <Invitation />
