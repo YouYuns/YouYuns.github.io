@@ -48,28 +48,24 @@ const Navigator: React.FC<NavigatorProps> = ({
   }, []);
 
   /* =========================
-     음소거 토글
+     음악 버튼 클릭 / 터치
+     - 도움말 상태에서도 바로 재생
+     - navMode 변경과 독립적으로 음소거 상태 유지
   ========================= */
-  const toggleMute = () => {
+  const handleMusicClick = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation();
     const audio = audioRef.current;
     if (!audio) return;
 
-    // ⭐ 최초 터치 (도움말 상태 포함)
-    if (audio.paused) {
-      audio.muted = false;
-      audio
-        .play()
-        .then(() => {
-          setIsMuted(false);
-        })
-        .catch(() => {});
-      return;
-    }
-
-    // 이후부터는 일반 토글
+    // 토글 음소거
     const nextMuted = !isMuted;
     audio.muted = nextMuted;
     setIsMuted(nextMuted);
+
+    // 음소거 해제 시 일시정지 상태면 바로 재생
+    if (!nextMuted && audio.paused) {
+      audio.play().catch(() => {});
+    }
   };
 
   return (
@@ -103,10 +99,7 @@ const Navigator: React.FC<NavigatorProps> = ({
         {/* 🎵 음악 버튼 (항상 표시) */}
         <div
           className="music-control"
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleMute();
-          }}
+          onClick={handleMusicClick}
           onTouchStart={() => setClicked(true)}
           onTouchEnd={() => setClicked(false)}
         >
