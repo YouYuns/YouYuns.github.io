@@ -70,11 +70,13 @@
 }
 
 .text-love {
+  font-family: Cafe24Danjunghae, sans-serif;
   opacity: 0;
   animation: loveFromLeft 2.5s ease-out forwards;
 }
 
 .text-is {
+  font-family: Cafe24Danjunghae, sans-serif;
   opacity: 0;
   animation: isFromRight 2.5s ease-out forwards;
 }
@@ -84,12 +86,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   font-size: 6rem;
   font-weight: bold;
 }
 
 .text-life {
+  font-family: Cafe24Danjunghae, sans-serif;
   opacity: 0;
   animation: lifeFromRight 2.5s ease-out forwards;
 }
