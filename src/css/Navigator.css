@@ -27,6 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: BMJUA, sans-serif;
 }
 
 /* ===== 도움말 & 네비 공통 위치 ===== */
@@ -59,7 +60,7 @@
 
 .nav-item {
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   opacity: 0;
   animation: navFadeIn 1.2s forwards;
 }
@@ -78,12 +79,14 @@
 /* ===== 음악 버튼 ===== */
 .music-control {
   position: absolute;
-  right: 40px;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-40%);
 }
 
 .music-btn {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
 }
 
 .music-btn.clicked {

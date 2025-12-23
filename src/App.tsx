@@ -13,7 +13,7 @@ import "./css/Navigator.css";
 import "./css/Scroll.css";
 import "./css/Account.css";
 import "./css/SurveryModal.css";
-import "./css/Rscvp.css";
+// import "./css/Rscvp.css";
 import "./css/Link.css";
 import "./css/Account.css";
 
@@ -26,7 +26,7 @@ import Location from "./pages/Location";
 import ImgGallery from "./pages/ImgGallery";
 import Scroll from "./pages/Scroll";
 import AutoCover from "./pages/AutoCover";
-import Rsvp from "./pages/Rsvp";
+// import Rsvp from "./pages/Rsvp";
 import Link from "./pages/Link";
 
 import Footer from "./components/Footer";
@@ -56,13 +56,13 @@ function App() {
   /* ===========================
      기존 상태
   ============================ */
-  const [showRsvpModal, setShowRsvpModal] = useState(false);
+  // const [showRsvpModal, setShowRsvpModal] = useState(false);
 
   const galleryTopRef = useRef<HTMLDivElement>(null);
   const locationRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
-  const rsvpRef = useRef<HTMLDivElement>(null);
+  // const rsvpRef = useRef<HTMLDivElement>(null);
 
   /* ===========================
      🔥 음악 관련 (추가)
@@ -106,23 +106,23 @@ function App() {
   /* ===========================
      RSVP 옵저버 (기존)
   ============================ */
-  useEffect(() => {
-    if (!rsvpRef.current) return;
+  // useEffect(() => {
+  //   if (!rsvpRef.current) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShowRsvpModal(true);
-          }
-        });
-      },
-      { threshold: 1 }
-    );
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           setShowRsvpModal(true);
+  //         }
+  //       });
+  //     },
+  //     { threshold: 1 }
+  //   );
 
-    observer.observe(rsvpRef.current);
-    return () => observer.disconnect();
-  }, []);
+  //   observer.observe(rsvpRef.current);
+  //   return () => observer.disconnect();
+  // }, []);
 
   useEffect(() => {
     const parsed = queryString.parse(window.location.search);
@@ -197,9 +197,9 @@ function App() {
         <Contact />
       </div>
 
-      <div ref={rsvpRef}>
+      {/* <div ref={rsvpRef}>
         <Rsvp showModal={showRsvpModal} />
-      </div>
+      </div> */}
 
       <Account />
       <Link />

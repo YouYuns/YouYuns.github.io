@@ -24,107 +24,108 @@
   margin-bottom: 30px;
   font: inherit;
   font-weight: bold;
-   font-family: 'Cafe24Oneprettynight', sans-serif;
+  font-family: "Cafe24Oneprettynight", sans-serif;
 }
-.contact__sub_title{
-    color: rgb(119, 163, 108);
+.contact__sub_title {
+  color: rgb(119, 163, 108);
 }
-  
-  .contact__btn {
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-size: 16px;
-    color:rgb(95, 25, 25);
-    display: flex;
-    align-items: center;
-  }
-  
-  .contact__boxes {
-    margin-top: 20px;
-    border: 1px solid rgb(247, 186, 186);
-    border-radius: 3px;
-  }
-  
-  .contact__box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 200px;
-    padding: 15px 20px;
-    border: thin solid rgb(247, 186, 186);
-  }
 
-  .contact__box span {
-    font-size: x-large;
-  }
-  
+.contact__btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: rgb(95, 25, 25);
+  display: flex;
+  align-items: center;
+}
 
-  .contact__icons {
-    /* width: 100px; */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.contact__boxes {
+  margin-top: 20px;
+  border: 1px solid rgb(247, 186, 186);
+  border-radius: 3px;
+}
 
-  .contact__icons a {
-    color: inherit;
-  }
+.contact__box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  padding: 15px 20px;
+  border: thin solid rgb(247, 186, 186);
+}
 
-  .contact__guide-text {
-    margin-top: 20px;
-    color:black;
-    font-size: small;
-  }
+.contact__box span {
+  font-size: x-large;
+}
 
+.contact__icons {
+  /* width: 100px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.contact__icons a {
+  color: inherit;
+}
 
-  /* 드롭다운 css */
+.contact__guide-text {
+  margin-top: 20px;
+  color: black;
+  font-size: small;
+}
+
+/* 드롭다운 css */
 
 /* 버튼 디자인 */
 .contact-button {
-  padding: 10px 20px;
+  font-size: 16px;
+  padding: 13px 20px;
   border: 0;
   border-radius: 5px;
   background: rgb(213, 168, 145);
   color: #fff;
-  font-family: 'Cafe24Oneprettynight', sans-serif;
+  font-family: "Cafe24Oneprettynight", sans-serif;
   text-align: center;
   cursor: pointer;
   margin-top: 40px;
 }
 
-.contact-button:hover {
-  background: rgb(191, 149, 128);
+@media (hover: hover) and (pointer: fine) {
+  .contact-button:hover {
+    background: rgb(191, 149, 128);
+  }
 }
-
 /* 드롭다운 전체 */
 .contact__dropdown {
   width: 100%;
+  margin-top: 50px;
+  max-height: 0;
   overflow: hidden;
-  background: white;
-  border-radius: 5px;
-  margin-top: 30px;
-  display: block; /* flex 대신 block */
-  transition: max-height 0.5s ease, padding 0.5s ease;
-  padding: 0px 0; /* 초기 padding 0 */
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 1s ease;
 }
 
+.contact__dropdown.open {
+  max-height: 1100px; /* 충분히 큰 값 */
+  opacity: 1;
+}
 /* 신랑/신부 섹션 */
 .contact__section {
-  width: 90%;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  width: 100%;
+  margin: 20px auto 10px;
 }
 
 /* 신랑/신부 제목 */
 .contact__section h4 {
   margin-bottom: 10px;
   font-weight: bold;
-  text-align: left;
   text-align: center;
 }
-
+.contact-button.open {
+  background: rgb(191, 149, 128);
+}
 /* 계좌번호 항목 */
 .contact__section p {
   width: 100%;
@@ -135,11 +136,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Cafe24Oneprettynight', sans-serif;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-family: "Cafe24Oneprettynight", sans-serif;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 .contact__item {
-  width: 100%;
   background: rgb(245, 245, 245);
   border-radius: 5px;
   margin-bottom: 5px;
@@ -165,8 +165,13 @@
   text-align: center;
 }
 
-
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

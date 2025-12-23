@@ -41,7 +41,7 @@ code {
   font-style: normal;
 }
 @font-face {
-  font-family: "KimNamyun";
+  font-family: "Cafe24Danjunghae";
   src: url("fonts/Cafe24Danjunghae.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -53,8 +53,14 @@ code {
   font-style: normal;
 }
 @font-face {
-  font-family: "Cafe24Oneprettynight";
+  font-family: "BookkMyungjo";
   src: url("fonts/BookkMyungjo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BMJUA";
+  src: url("fonts/BMJUA.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

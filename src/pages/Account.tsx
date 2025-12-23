@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "../css/Modal.css";
 import { useFadeUp } from "../hooks/useFadeUp";
 interface Contact {
@@ -11,7 +11,6 @@ const Account: React.FC = () => {
   const { ref: titleRef, show: titleShow } = useFadeUp();
   const { ref: accountRef, show: accountShow } = useFadeUp();
   const [isOpen, setIsOpen] = useState(false);
-  const [maxHeight, setMaxHeight] = useState("0px");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const groom_contact: Contact[] = [
@@ -29,34 +28,17 @@ const Account: React.FC = () => {
     setIsOpen((prev) => !prev);
   };
 
-  // isOpen 상태가 바뀌면 maxHeight를 계산
-  useEffect(() => {
-    if (!dropdownRef.current) return;
-
-    const scrollHeight = dropdownRef.current.scrollHeight;
-
-    // 다음 렌더 사이클에서 maxHeight 업데이트
-    const timer = requestAnimationFrame(() => {
-      setMaxHeight(isOpen ? `${scrollHeight}px` : "0px");
-    });
-
-    // 드롭다운 열리면 스크롤 이동
-    if (isOpen) {
-      setTimeout(() => {
-        dropdownRef.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }, 500); // transition 시간과 맞춤
-    }
-
-    return () => cancelAnimationFrame(timer);
-  }, [isOpen]);
-
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then().catch();
   };
+  const handleTransitionEnd = () => {
+    if (!isOpen) return;
 
+    dropdownRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
   const renderContact = (contact: Contact, index: number, type: string) => (
     <div key={`${type}-${index}`} className="contact__item">
       <span>
@@ -82,21 +64,19 @@ const Account: React.FC = () => {
         <div className="contact__content1">참석이 어려우신 분들은</div>
         <div className="contact__content2">축하의 마음을 전달해 주세요.</div>
 
-        <button className="contact-button" onClick={toggleDropdown}>
+        <button
+          className={`contact-button ${isOpen ? "open" : ""}`}
+          onClick={toggleDropdown}
+        >
           계좌번호 확인하기
         </button>
       </div>
 
       {/* 항상 렌더링, maxHeight와 padding으로 슬라이드 */}
       <div
-        className="contact__dropdown"
         ref={dropdownRef}
-        style={{
-          maxHeight: maxHeight,
-          padding: isOpen ? "10px 0" : "0px 0",
-          overflow: "hidden",
-          transition: "max-height 0.5s ease, padding 0.5s ease",
-        }}
+        className={`contact__dropdown ${isOpen ? "open" : ""}`}
+        onTransitionEnd={handleTransitionEnd}
       >
         <div className="contact__section">
           <h4>신랑 측</h4>
