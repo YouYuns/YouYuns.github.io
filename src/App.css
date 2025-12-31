@@ -18,10 +18,8 @@
   max-width: 480px;
   height: 8700px; /* Scroll 모드일 때 전체 길이 */
 }
-
-/* AutoCover 전용 */
-.main_container_auto {
-  height: 100vh; /* 화면 전체만 차지 */
+.autocover-container {
+  height: 100%;
 }
 html,
 body {

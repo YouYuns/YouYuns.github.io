@@ -176,7 +176,7 @@ function App() {
           position: "relative",
           maxWidth: "480px",
           width: "100%",
-          height: mode === "auto" ? "100vh" : "8700px",
+     height: mode === "auto" ? "700px" : "8700px",
         }}
       >
         {mode === "scroll" ? <Scroll /> : <AutoCover />}
