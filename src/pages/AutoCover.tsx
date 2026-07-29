@@ -72,12 +72,17 @@ const AutoCover: React.FC = () => {
   /* =========================
      자동 슬라이드
   ========================= */
-  useEffect(() => {
-    if (!start) return;
-
+  const startAutoSlide = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
     }, 3800);
+  };
+
+  useEffect(() => {
+    if (!start) return;
+
+    startAutoSlide();
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -123,9 +128,7 @@ const AutoCover: React.FC = () => {
     touchDeltaX.current = 0;
 
     // 자동 슬라이드 다시 시작
-    intervalRef.current = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 3800);
+    startAutoSlide();
   };
 
   return (

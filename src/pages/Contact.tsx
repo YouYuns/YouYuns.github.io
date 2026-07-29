@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
   };
 
   const bride = {
-    main: { name: "신부 최소리", src: eMain, phone: "010-7120-6511" },
+    main: { name: "신부 최소리", src: eMain, phone: "010-6271-8428" },
     family: [{ name: "어머니 김남선", src: eMom, phone: "010-9197-8428" }],
   };
 

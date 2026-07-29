@@ -68,24 +68,37 @@ function App() {
      🔥 음악 관련 (추가)
   ============================ */
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [isMuted, setIsMuted] = useState(true);
-  const [showMusicOverlay, setShowMusicOverlay] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [mode, setMode] = useState<"scroll" | "auto">("auto");
-  const handleFirstInteraction = () => {
-    if (!audioRef.current) {
-      const audio = new Audio(myMusic);
-      audio.loop = true;
-      audio.muted = false;
-      audio.play().catch(() => {});
-      audioRef.current = audio;
-    } else {
-      audioRef.current.muted = false;
-      audioRef.current.play().catch(() => {});
-    }
 
-    setIsMuted(false); // 🔊 아이콘 변경
-    setShowMusicOverlay(false); // 🔥 오버레이 제거
-  };
+  /* =========================
+     🔥 음악 자동재생 (막히면 첫 상호작용에서 조용히 재생)
+  ============================ */
+  useEffect(() => {
+    const audio = new Audio(myMusic);
+    audio.loop = true;
+    audio.muted = false;
+    audioRef.current = audio;
+
+    const startPlayback = () => {
+      audio
+        .play()
+        .then(() => setIsMuted(false))
+        .catch(() => {});
+    };
+
+    startPlayback();
+
+    const resumeOnInteraction = () => startPlayback();
+    window.addEventListener("pointerdown", resumeOnInteraction, { once: true });
+    window.addEventListener("keydown", resumeOnInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", resumeOnInteraction);
+      window.removeEventListener("keydown", resumeOnInteraction);
+      audio.pause();
+    };
+  }, []);
 
   /* ===========================
      스크롤 유틸 (기존)
@@ -136,15 +149,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* 🔥 전체 화면 음악 오버레이 */}
-      {showMusicOverlay && (
-        <div
-          className="music-overlay"
-          onTouchStart={handleFirstInteraction}
-          onClick={handleFirstInteraction}
-        />
-      )}
-
       {/* 눈 효과 */}
       <Snowfall
         color="pink"

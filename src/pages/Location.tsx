@@ -59,34 +59,52 @@ const Location: React.FC = () => {
   useEffect(() => {
     const container = mapRef.current;
     if (!container) return;
-    const kakao = window.kakao;
-    if (!kakao?.maps) return;
 
-    kakao.maps.load(() => {
-      const center = new kakao.maps.LatLng(lat, lng);
+    let cancelled = false;
+    let retryTimer: number | null = null;
 
-      const map = new kakao.maps.Map(container, {
-        center,
-        level: 3,
-        draggable: false,
-        scrollwheel: false,
-        disableDoubleClick: true,
+    const initMap = () => {
+      const kakao = window.kakao;
+      if (!kakao?.maps) {
+        retryTimer = window.setTimeout(initMap, 300);
+        return;
+      }
+
+      kakao.maps.load(() => {
+        if (cancelled) return;
+
+        const center = new kakao.maps.LatLng(lat, lng);
+
+        const map = new kakao.maps.Map(container, {
+          center,
+          level: 3,
+          draggable: false,
+          scrollwheel: false,
+          disableDoubleClick: true,
+        });
+
+        const marker = new kakao.maps.Marker({ position: center });
+        marker.setMap(map);
+
+        // 지도 위에서도 페이지 스크롤 가능하게
+        container.style.touchAction = "auto"; // touch-action override
+        container.style.pointerEvents = "auto"; // 기본 이벤트 허용
+
+        // 내부 지도 div에도 적용
+        const mapInnerDivs = container.querySelectorAll("div");
+        mapInnerDivs.forEach((div) => {
+          (div as HTMLElement).style.pointerEvents = "none"; // 지도 이벤트 무시
+          (div as HTMLElement).style.touchAction = "auto"; // 터치 이벤트 허용
+        });
       });
+    };
 
-      const marker = new kakao.maps.Marker({ position: center });
-      marker.setMap(map);
+    initMap();
 
-      // 지도 위에서도 페이지 스크롤 가능하게
-      container.style.touchAction = "auto"; // touch-action override
-      container.style.pointerEvents = "auto"; // 기본 이벤트 허용
-
-      // 내부 지도 div에도 적용
-      const mapInnerDivs = container.querySelectorAll("div");
-      mapInnerDivs.forEach((div) => {
-        (div as HTMLElement).style.pointerEvents = "none"; // 지도 이벤트 무시
-        (div as HTMLElement).style.touchAction = "auto"; // 터치 이벤트 허용
-      });
-    });
+    return () => {
+      cancelled = true;
+      if (retryTimer) clearTimeout(retryTimer);
+    };
   }, []);
 
   const gotoKakaoMap = () => {

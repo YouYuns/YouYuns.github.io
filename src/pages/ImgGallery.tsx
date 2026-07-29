@@ -35,6 +35,7 @@ const ImgGallery: React.FC = () => {
       <div
         ref={ImgGalleryRef}
         className={`fade-up ${ImgGalleryShow ? "show" : ""}`}
+        style={{ width: "100%" }}
       >
         <div
           className=""

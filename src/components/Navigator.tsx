@@ -13,7 +13,7 @@ interface NavigatorProps {
   scrollToGallery: () => void;
 }
 
-type NavMode = "hidden" | "help" | "nav";
+type NavMode = "hidden" | "nav";
 
 const Navigator: React.FC<NavigatorProps> = ({
   audioRef,
@@ -32,17 +32,12 @@ const Navigator: React.FC<NavigatorProps> = ({
      Cover 종료 후 타이밍
   ========================= */
   useEffect(() => {
-    const helpTimer = setTimeout(() => {
-      setNavMode("help");
-    }, 2000);
-
     const navTimer = setTimeout(() => {
       setNavTexts(["성호♥소리", "사진첩", "오시는길", "연락처"]);
       setNavMode("nav");
     }, 9000);
 
     return () => {
-      clearTimeout(helpTimer);
       clearTimeout(navTimer);
     };
   }, []);
@@ -97,13 +92,6 @@ const Navigator: React.FC<NavigatorProps> = ({
   return (
     <div className="container-nav">
       <nav className="top-nav">
-        {/* ===== 도움말 ===== */}
-        {navMode === "help" && (
-          <div className="nav-help fade-in-out-long">
-            화면을 터치하면 배경음악이 재생됩니다.
-          </div>
-        )}
-
         {/* ===== 네비 ===== */}
         {navMode === "nav" && (
           <div className="nav-items">
