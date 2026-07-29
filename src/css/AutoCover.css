@@ -9,7 +9,7 @@
   justify-content: center; /* 중앙 정렬 */
   align-items: center;
   padding: 20px;
-  min-height: 100vh;
+  height: 100%;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -42,12 +42,14 @@
 }
 
 .autocover-item .caption {
+  width: 100%;
   margin-bottom: 15px;
   font-family: KimNamyun, sans-serif;
-  font-size: 1.6rem;
+  font-size: calc(1.6rem + 2px);
   line-height: 35px;
   text-align: center;
   color: rgb(95, 25, 25);
+  box-sizing: border-box;
 }
 
 /* ===== 화면 중앙 하단 고정 스크롤 화살표 ===== */

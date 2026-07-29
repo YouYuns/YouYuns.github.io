@@ -1,5 +1,17 @@
+img {
+  -webkit-touch-callout: none; /* iOS 롱프레스 저장 메뉴 방지 */
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* 카카오톡 인앱브라우저 등 안드로이드 웹뷰의 "이미지 저장" 롱프레스는
+     img 태그 자체를 대상으로 감지되므로, 터치 이벤트가 img를 통과해
+     부모 요소로 전달되게 하여 감지를 회피함 */
+  pointer-events: none;
+}
+
 body {
   margin: 0;
+  background-color: #fff8f6;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

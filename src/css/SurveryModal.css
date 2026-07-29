@@ -1,6 +1,6 @@
 .survey {
     font-family:'GangwonEdu';
-    font-size: large;
+    font-size: 20px;
     font-weight: bold;
     position: fixed;
     z-index: 1000; 
@@ -25,7 +25,7 @@
 
 .survey__btn-side {
     font-family:'GangwonEdu';
-    font-size: large;
+    font-size: 20px;
     width: 100px;
     height: 45px;
     background-color: transparent;
@@ -43,7 +43,7 @@
   }
 
 .survey__title {
-    font-size: xx-large;
+    font-size: 34px;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -70,14 +70,14 @@
     font-family: 'GangwonEdu';
     width: 175px;
     padding: 10px;
-    font-size: large;
+    font-size: 20px;
 }
 
 .survey__input select {
     font-family:'GangwonEdu';
     width: 198px;
     padding: 10px;
-    font-size: large;
+    font-size: 20px;
 }
 
 .survey__btn-close {
@@ -86,7 +86,7 @@
     right: 10px;
     background: transparent;
     border: none;
-    font-size: 30px;
+    font-size: 32px;
     cursor: pointer;
 }
 
@@ -99,7 +99,7 @@
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.321);
     border-radius: 5px;
-    font-size: x-large;
+    font-size: 26px;
     padding: 10px 0;
     width: 300px;
     margin-top: 5px;
@@ -116,7 +116,7 @@
 .survey__agree {
     margin: 20px 0 15px 0;
     background-color: rgb(253, 236, 236);
-    font-size: large;
+    font-size: 20px;
     padding: 7px;
     border-radius: 5px;
 }

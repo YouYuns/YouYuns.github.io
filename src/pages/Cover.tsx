@@ -1,12 +1,26 @@
 import { useState } from "react";
 import "../css/Cover.css";
+import mainImg from "../images/main.jpg";
 
-function Cover() {
+interface CoverProps {
+  onDone?: () => void;
+}
+
+// CSS의 coverFadeOut animation-delay(3s)와 맞춰야 함
+const FADE_OUT_DELAY = 3000;
+
+function Cover({ onDone }: CoverProps) {
   const [loaded, setLoaded] = useState(false);
 
   const handleImageLoad = () => {
     // 이미지 로딩 완료 후 1초 딜레이 후 loaded 상태 변경
-    setTimeout(() => setLoaded(true), 1000);
+    setTimeout(() => {
+      setLoaded(true);
+      // 사진이 사라지기 시작하는 시점에 맞춰 네비게이션도 같이 나타나도록 알림
+      setTimeout(() => {
+        onDone?.();
+      }, FADE_OUT_DELAY);
+    }, 1000);
   };
 
   return (
@@ -14,7 +28,7 @@ function Cover() {
       {/* 배경 이미지 */}
       <img
         className="cover-bg-img"
-        src="https://youyuns.github.io/1.webp"
+        src={mainImg}
         alt=""
         loading="eager"
         decoding="async"

@@ -1,5 +1,5 @@
 .invitation__title {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .invitation__content {
@@ -10,7 +10,7 @@
   margin-top: 30px;
 }
 .invitation__content div {
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 10px;
   width: 100%;
   max-width: 480px;
@@ -23,7 +23,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .invitation__parent {
@@ -37,7 +37,7 @@
 
 .invitation__btn-contact {
   font-family: "GangwonEdu";
-  font-size: x-large;
+  font-size: 26px;
   margin-top: 30px;
   border: 1px solid rgb(134, 128, 128);
   background-color: transparent;

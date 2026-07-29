@@ -19,22 +19,23 @@
 /* Account */
 
 .contact__title {
-  font-size: xx-large;
   color: rgb(119, 163, 108);
   margin-bottom: 30px;
   font: inherit;
+  font-size: 34px;
   font-weight: bold;
   font-family: "Cafe24Oneprettynight", sans-serif;
 }
 .contact__sub_title {
   color: rgb(119, 163, 108);
+  margin-bottom: 4px;
 }
 
 .contact__btn {
   cursor: pointer;
   background: none;
   border: none;
-  font-size: 16px;
+  font-size: 18px;
   color: rgb(95, 25, 25);
   display: flex;
   align-items: center;
@@ -56,7 +57,7 @@
 }
 
 .contact__box span {
-  font-size: x-large;
+  font-size: 26px;
 }
 
 .contact__icons {
@@ -73,14 +74,14 @@
 .contact__guide-text {
   margin-top: 20px;
   color: black;
-  font-size: small;
+  font-size: 15px;
 }
 
 /* 드롭다운 css */
 
 /* 버튼 디자인 */
 .contact-button {
-  font-size: 16px;
+  font-size: 18px;
   padding: 13px 20px;
   border: 0;
   border-radius: 5px;
@@ -99,7 +100,12 @@
 }
 /* 드롭다운 전체 */
 .contact__dropdown {
-  width: 100%;
+  width: 100vw;
+  max-width: 480px;
+  margin-left: calc(-10vw + max(0px, (100vw - 480px) / 2));
+  margin-right: calc(-10vw + max(0px, (100vw - 480px) / 2));
+  box-sizing: border-box;
+  padding: 0 20px;
   margin-top: 50px;
   max-height: 0;
   overflow: hidden;
@@ -148,16 +154,16 @@
   justify-content: space-between; /* 계좌번호와 버튼 오른쪽 정렬 */
   align-items: center;
   font-family: "Cafe24Oneprettynight", sans-serif;
-  font-size: 0.9rem;
+  font-size: calc(0.9rem + 2px);
   color: #202121;
 }
 
 .copy-button {
   padding: 5px 10px;
-  font-size: 0.7rem;
+  font-size: calc(0.7rem + 2px);
   border: 0;
   border-radius: 5px;
-  background: rgb(206, 206, 206);
+  background: rgb(213, 168, 145);
   display: inline-block;
   color: rgb(255, 255, 255);
   font-family: "Cafe24Oneprettynight", sans-serif;

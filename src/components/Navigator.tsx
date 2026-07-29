@@ -3,6 +3,7 @@ import playIcon from "../images/play-icon.png";
 import stopIcon from "../images/play-stop-icon.png";
 
 interface NavigatorProps {
+  showNav: boolean;
   audioRef: React.RefObject<HTMLAudioElement | null>;
   isMuted: boolean;
   setIsMuted: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,6 +17,7 @@ interface NavigatorProps {
 type NavMode = "hidden" | "nav";
 
 const Navigator: React.FC<NavigatorProps> = ({
+  showNav,
   audioRef,
   isMuted,
   setIsMuted,
@@ -29,18 +31,13 @@ const Navigator: React.FC<NavigatorProps> = ({
   const [navTexts, setNavTexts] = useState(["", "", "", ""]);
 
   /* =========================
-     Cover 종료 후 타이밍
+     Cover 종료 신호를 받아 표시 (타이밍 동기화)
   ========================= */
   useEffect(() => {
-    const navTimer = setTimeout(() => {
-      setNavTexts(["성호♥소리", "사진첩", "오시는길", "연락처"]);
-      setNavMode("nav");
-    }, 9000);
-
-    return () => {
-      clearTimeout(navTimer);
-    };
-  }, []);
+    if (!showNav) return;
+    setNavTexts(["성호♥소리", "사진첩", "오시는길", "연락처"]);
+    setNavMode("nav");
+  }, [showNav]);
 
   /* =========================
      화면 활성화 상태에 따른 음악 제어

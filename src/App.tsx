@@ -38,6 +38,27 @@ import queryString from "query-string";
 
 function App() {
   /* ===========================
+     이미지 저장 방지 (우클릭 / 롱프레스 메뉴)
+  ============================ */
+  useEffect(() => {
+    const preventImageContextMenu = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("img")) {
+        e.preventDefault();
+      }
+    };
+    // 캡처 단계에서 막아야 라이트박스 등 하위 라이브러리가
+    // 이벤트 전파를 막아도(stopPropagation) 확실히 차단됨
+    document.addEventListener("contextmenu", preventImageContextMenu, {
+      capture: true,
+    });
+    return () =>
+      document.removeEventListener("contextmenu", preventImageContextMenu, {
+        capture: true,
+      });
+  }, []);
+
+  /* ===========================
      vh 계산 (기존)
   ============================ */
   useEffect(() => {
@@ -70,6 +91,7 @@ function App() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isMuted, setIsMuted] = useState(false);
   const [mode, setMode] = useState<"scroll" | "auto">("auto");
+  const [coverDone, setCoverDone] = useState(false);
 
   /* =========================
      🔥 음악 자동재생 (막히면 첫 상호작용에서 조용히 재생)
@@ -151,7 +173,7 @@ function App() {
     <div className="App">
       {/* 눈 효과 */}
       <Snowfall
-        color="pink"
+        color="white"
         snowflakeCount={15}
         style={{
           position: "fixed",
@@ -162,9 +184,10 @@ function App() {
         }}
       />
 
-      <Cover />
+      <Cover onDone={() => setCoverDone(true)} />
 
       <Navigator
+        showNav={coverDone}
         audioRef={audioRef}
         isMuted={isMuted}
         setIsMuted={setIsMuted}
@@ -180,6 +203,7 @@ function App() {
           position: "relative",
           maxWidth: "480px",
           width: "100%",
+          margin: "0 auto",
      height: mode === "auto" ? "700px" : "8700px",
         }}
       >

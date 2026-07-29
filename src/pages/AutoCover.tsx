@@ -23,8 +23,9 @@ const imageTexts = [
     저희 결혼합니다.
   </>,
   <>
-    살아온 환경, 좋아하는 것<br />
-    취미, 성격도 다른 우리가
+    첫눈에 반한 설렘은,
+    <br />
+    서로 닮은 가치관을 만나 확신이 되어
   </>,
   <>
     이제는 같은 곳을 바라보며
@@ -37,14 +38,14 @@ const imageTexts = [
     함께 축하해 주시길 바랍니다.
   </>,
   <>
-    가을 하늘처럼 맑고 깊은
-    <br />
-    사랑으로 함께하겠습니다.
-  </>,
-  <>
-    추웠던 겨울, 햇살 가득 선물처럼 찾아온
+    더웠던 여름, 소나기 뒤 무지개처럼 찾아온
     <br />
     소중한 사람과 함께 행복하게 살겠습니다.
+  </>,
+  <>
+    겨울 햇살처럼 잔잔하고 따뜻한
+    <br />
+    사랑으로 함께하겠습니다.
   </>,
   <>
     기쁨과 설렘 가득한
@@ -76,7 +77,7 @@ const AutoCover: React.FC = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 3800);
+    }, 5500);
   };
 
   useEffect(() => {
@@ -101,10 +102,9 @@ const AutoCover: React.FC = () => {
   }, [hasScrolled]);
 
   /* =========================
-     터치 슬라이드
+     터치 슬라이드 (스와이프로 수동 이동, 자동 슬라이드는 계속 진행)
   ========================= */
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (intervalRef.current) clearInterval(intervalRef.current); // 터치 시작 시 자동 슬라이드 멈춤
     touchStartX.current = e.touches[0].clientX;
   };
 
@@ -126,9 +126,6 @@ const AutoCover: React.FC = () => {
     // 터치 상태 초기화
     touchStartX.current = null;
     touchDeltaX.current = 0;
-
-    // 자동 슬라이드 다시 시작
-    startAutoSlide();
   };
 
   return (

@@ -46,7 +46,7 @@
 
 /* ===== 도움말 ===== */
 .nav-help {
-  font-size: 14px;
+  font-size: 16px;
   color: #fdf7f7;
   pointer-events: none;
   background-color: #5f1919;
@@ -60,7 +60,7 @@
 
 .nav-item {
   cursor: pointer;
-  font-size: 15px;
+  font-size: 17px;
   opacity: 0;
   animation: navFadeIn 1.2s forwards;
 }

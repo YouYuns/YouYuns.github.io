@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FiPhoneCall } from "react-icons/fi";
 import "../css/Modal.css";
 import ContactModal from "../components/ContactModal";
 import sDad from "../images/1.jpg";
@@ -32,18 +33,23 @@ const Contact: React.FC = () => {
 
   const renderPerson = (
     person: { name: string; src: string; phone: string },
-    key: string
+    key: string,
+    showImg: boolean = true
   ) => (
     <div
       key={key} // 여기서 key 지정
-      className="person"
+      className={`person${showImg ? "" : " person--text-only"}`}
       onClick={() => {
         console.log("클릭됨:", person.name, person.phone);
         setModalInfo({ name: person.name, phone: person.phone });
       }}
       style={{ cursor: "pointer" }}
     >
-      <img src={person.src} alt={person.name} className="person-img" />
+      {showImg ? (
+        <img src={person.src} alt={person.name} className="person-img" />
+      ) : (
+        <FiPhoneCall className="person-icon" />
+      )}
       <p className="person-name">{person.name}</p>
     </div>
   );
@@ -64,7 +70,7 @@ const Contact: React.FC = () => {
               </div>
               <div className="family-persons">
                 {groom.family.map((person, i) =>
-                  renderPerson(person, `groom-${i}`)
+                  renderPerson(person, `groom-${i}`, false)
                 )}
               </div>
             </div>
@@ -75,7 +81,7 @@ const Contact: React.FC = () => {
               </div>
               <div className="family-persons">
                 {bride.family.map((person, i) =>
-                  renderPerson(person, `bride-${i}`)
+                  renderPerson(person, `bride-${i}`, false)
                 )}
               </div>
             </div>

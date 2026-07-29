@@ -25,7 +25,7 @@
   margin-top: 10px;
   margin-right: 10px;
   padding: 8px 15px;
-  background: #f28a8a;
+  background: rgb(213, 168, 145);
   color: #fff;
   border-radius: 5px;
   text-decoration: none;
@@ -35,7 +35,7 @@
   margin-top: 10px;
   margin-right: 10px;
   padding: 8px 15px;
-  background: #f28a8a;
+  background: rgb(213, 168, 145);
   color: #fff;
   border-radius: 5px;
   text-decoration: none;
@@ -112,6 +112,12 @@
   transform: scale(0.95);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   opacity: 0.8;
+}
+
+.call-button,
+.sms-button {
+  background-color: rgb(213, 168, 145);
+  color: #fff;
 }
 
 /* 닫기 버튼만 색 다르게 */

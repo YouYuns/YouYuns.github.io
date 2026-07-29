@@ -34,7 +34,7 @@
   margin-top: 15px;
   text-align: center;
   font-family: KimNamyun, sans-serif;
-  font-size: 1.2rem;
+  font-size: calc(1.2rem + 2px);
   line-height: 25px;
   color: rgb(95, 25, 25);
 }

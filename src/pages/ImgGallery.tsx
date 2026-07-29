@@ -51,15 +51,17 @@ const ImgGallery: React.FC = () => {
             modules={[Thumbs]}
           >
             {images.map((img, idx) => (
-              <SwiperSlide key={idx}>
+              <SwiperSlide
+                key={idx}
+                onClick={() => {
+                  setIndex(idx);
+                  setOpen(true);
+                }}
+              >
                 <img
                   src={img}
                   alt={`slide-${idx}`}
                   style={{ width: "100%", borderRadius: "16px" }}
-                  onClick={() => {
-                    setIndex(idx);
-                    setOpen(true);
-                  }}
                 />
               </SwiperSlide>
             ))}
