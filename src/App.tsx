@@ -33,7 +33,7 @@ import Footer from "./components/Footer";
 import Navigator from "./components/Navigator";
 import Snowfall from "react-snowfall";
 
-import myMusic from "./media/JOY_Je-Taime.mp3";
+import myMusic from "./media/JOY_Je-Taime.m4a";
 import queryString from "query-string";
 
 function App() {

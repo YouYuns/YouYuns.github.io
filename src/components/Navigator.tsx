@@ -75,15 +75,21 @@ const Navigator: React.FC<NavigatorProps> = ({
     const audio = audioRef.current;
     if (!audio) return;
 
-    // 토글 음소거
-    const nextMuted = !isMuted;
-    audio.muted = nextMuted;
-    setIsMuted(nextMuted);
-
-    // 음소거 해제 시 일시정지 상태면 바로 재생
-    if (!nextMuted && audio.paused && document.visibilityState === "visible") {
-      audio.play().catch(() => {});
+    if (!isMuted) {
+      // 현재 재생 중 -> 즉시 음소거 (실패할 일이 없는 동작)
+      audio.muted = true;
+      setIsMuted(true);
+      return;
     }
+
+    // 현재 음소거 상태 -> 재생을 실제로 성공했을 때만 "재생 중"으로 표시
+    audio.muted = false;
+    audio
+      .play()
+      .then(() => setIsMuted(false))
+      .catch(() => {
+        audio.muted = true;
+      });
   };
 
   return (
