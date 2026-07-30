@@ -58,12 +58,14 @@ const Location: React.FC = () => {
   const transportRef = useRef<HTMLDivElement | null>(null);
   const carRef = useRef<HTMLDivElement | null>(null);
 
-  const handleTransportTransitionEnd = () => {
+  const handleTransportTransitionEnd = (e: React.TransitionEvent) => {
+    if (e.propertyName !== "max-height") return;
     if (!openTransport) return;
     transportRef.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
   };
 
-  const handleCarTransitionEnd = () => {
+  const handleCarTransitionEnd = (e: React.TransitionEvent) => {
+    if (e.propertyName !== "max-height") return;
     if (!openCar) return;
     carRef.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
   };

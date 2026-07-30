@@ -33,7 +33,8 @@ const Account: React.FC = () => {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then().catch();
   };
-  const handleTransitionEnd = () => {
+  const handleTransitionEnd = (e: React.TransitionEvent) => {
+    if (e.propertyName !== "max-height") return;
     if (!isOpen) return;
 
     dropdownRef.current?.scrollIntoView({
