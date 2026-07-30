@@ -15,23 +15,27 @@
     margin: 0 auto;
   }
   .calendar__weekdays {
+   
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    width: 300px;
+    width: 320px;
     margin-top: 20px;
     margin-bottom: 15px;
   }
   .calendar__weekdays span {
+     font-size: 20px;
     font-weight: bold;
   }
   
   .calendar__days {
+    
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
   }
   
   .calendar__day {
+    font-size: 20px;
     padding: 9px;
     text-align: center;
     position: relative; /* 상대 위치 설정 */
@@ -62,10 +66,13 @@
   }
 
   .calendar__remain {
+      font-size: 20px;
+
     width: 300px;
     margin: 20px 0;
     border: 1px dotted rgb(95, 25, 25);
     padding: 20px 15px;
+   
   }
 
   .calendar__remain span {
@@ -75,4 +82,5 @@
   .calendar__remain-day {
     color: rgb(218, 82, 82);
     font-weight: bold;
+      font-size: 20px;
   }
