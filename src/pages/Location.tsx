@@ -292,7 +292,7 @@ const Location: React.FC = () => {
             >
               <div>
                 <span className="icon">🏧</span>
-                <span className="location_title">ATM / 은행</span>
+                <span className="location_title">ATM</span>
               </div>
               <img
                 src={openAtm ? upArrow : downArrow}

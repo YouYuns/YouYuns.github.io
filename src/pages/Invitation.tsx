@@ -19,10 +19,10 @@ const FamilyInfo: React.FC<FamilyInfoProps> = ({
       <div className="invitation__parent">
         {dad && mom ? (
           <div>
-            {dad}·{mom}
+            {dad}·{mom}의
           </div>
         ) : mom ? (
-          <div>{mom}</div>
+          <div>{mom}의</div>
         ) : null}
       </div>
       <div>{relation}</div>
@@ -66,9 +66,9 @@ const Invitation: React.FC = () => {
             dad="윤원근"
             mom="김경하"
             child="윤성호"
-            relation="의 차남"
+            relation="차남"
           />
-          <FamilyInfo dad="" mom="김남선" child="최소리" relation="의 장녀" />
+          <FamilyInfo dad="" mom="김남선" child="최소리" relation="장녀" />
         </div>
       </div>
     </div>
