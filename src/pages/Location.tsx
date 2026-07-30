@@ -271,7 +271,7 @@ const Location: React.FC = () => {
               <div>• 주차</div>
               <div>왕십리 민자역사 비트플렉스 5F</div>
               <div>1,200대 주차 가능 / 2시간 무료</div>
-              <div>5층에 주차해야 찾기 쉬워요</div>
+              <div>( 5층에 주차해야 찾기 쉬워요 )</div>
             </div>
           </div>
 
