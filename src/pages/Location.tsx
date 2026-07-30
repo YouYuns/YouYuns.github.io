@@ -55,8 +55,10 @@ const Location: React.FC = () => {
 
   const [openTransport, setOpenTransport] = useState(false);
   const [openCar, setOpenCar] = useState(false);
+  const [openAtm, setOpenAtm] = useState(false);
   const transportRef = useRef<HTMLDivElement | null>(null);
   const carRef = useRef<HTMLDivElement | null>(null);
+  const atmRef = useRef<HTMLDivElement | null>(null);
 
   const handleTransportTransitionEnd = (e: React.TransitionEvent) => {
     if (e.propertyName !== "max-height") return;
@@ -68,6 +70,12 @@ const Location: React.FC = () => {
     if (e.propertyName !== "max-height") return;
     if (!openCar) return;
     carRef.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+  };
+
+  const handleAtmTransitionEnd = (e: React.TransitionEvent) => {
+    if (e.propertyName !== "max-height") return;
+    if (!openAtm) return;
+    atmRef.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
   };
 
   /* 카카오 지도 초기화 주석처리 (약도 이미지로 대체)
@@ -273,6 +281,39 @@ const Location: React.FC = () => {
               <div>왕십리 민자역사 비트플렉스 5F</div>
               <div>1,200대 주차 가능 / 2시간 무료</div>
               <div>( 5층에 주차해야 찾기 쉬워요 )</div>
+            </div>
+          </div>
+
+          {/* ATM / 은행 안내 */}
+          <div className="location__dropdown">
+            <div
+              className="location__dropdown-header"
+              onClick={() => setOpenAtm(!openAtm)}
+            >
+              <div>
+                <span className="icon">🏧</span>
+                <span className="location_title">ATM / 은행</span>
+              </div>
+              <img
+                src={openAtm ? upArrow : downArrow}
+                alt="arrow"
+                className="dropdown-arrow"
+              />
+            </div>
+            <div
+              ref={atmRef}
+              className={`location__dropdown-content ${openAtm ? "open" : ""}`}
+              onTransitionEnd={handleAtmTransitionEnd}
+            >
+              <div>
+                웨딩홀이 위치한 5, 6층에는 별도의 ATM이 없어,
+                비트플렉스 건물에 위치한 ATM을 안내드립니다.
+              </div>
+              <div> &nbsp;</div>
+              <div>
+                비트플렉스 건물 3층 이마트 앞에 ATM이 있으나 다소
+                찾기 어려우니, 위치를 미리 확인하시고 이용해 주세요.
+              </div>
             </div>
           </div>
 
