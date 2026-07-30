@@ -148,7 +148,6 @@ const Location: React.FC = () => {
         <div className="location__details">
           <div>디노체컨벤션</div>
           <div>서울 성동구 왕십리광장로 17 6층</div>
-          <div>(왕십리역)</div>
         </div>
 
         {/* 카카오 지도 주석처리, 약도 이미지로 대체
@@ -240,7 +239,7 @@ const Location: React.FC = () => {
             >
               <div>• 지하철</div>
               <div>2호선, 5호선 왕십리역 6-1번 출구 맞은편</div>
-              <div>던킨도너츠 옆 EV</div>
+              <div>던킨도너츠 옆 엘리베이터</div>
               <div> &nbsp;</div>
               <div>• 버스</div>
               <div>성동구청, 성동경찰서 하차</div>
