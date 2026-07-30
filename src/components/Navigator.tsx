@@ -116,7 +116,9 @@ const Navigator: React.FC<NavigatorProps> = ({
         >
           <img
             src={isMuted ? stopIcon : playIcon}
-            className={`music-btn ${clicked ? "clicked" : ""}`}
+            className={`music-btn ${isMuted ? "" : "playing"} ${
+              clicked ? "clicked" : ""
+            }`}
             alt="music"
           />
         </div>

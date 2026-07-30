@@ -27,7 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: BMJUA, sans-serif;
+  font-family: "GangwonEdu", sans-serif;
 }
 
 /* ===== 도움말 & 네비 공통 위치 ===== */
@@ -79,11 +79,11 @@
 /* ===== 음악 버튼 ===== */
 .music-control {
   position: absolute;
-  right: 10px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,12 +94,27 @@
 }
 
 .music-btn {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .music-btn.clicked {
   transform: scale(1);
+}
+
+/* 음악 재생 중일 때 살짝 움직이는 효과 */
+.music-btn.playing {
+  animation: musicPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.18) rotate(8deg);
+  }
 }
 
 /* ===== 도움말 애니메이션 ===== */

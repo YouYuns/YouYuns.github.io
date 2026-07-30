@@ -3,6 +3,7 @@ import kakaoMapIcon from "../images/kakao.png";
 import naverMapIcon from "../images/naver.webp";
 import upArrow from "../images/up-arrow-button.png";
 import downArrow from "../images/down-arrow-button.png";
+import locationGuide from "../images/location-guide.png";
 import { useFadeUp } from "../hooks/useFadeUp";
 
 declare global {
@@ -53,6 +54,7 @@ const Location: React.FC = () => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const [openTransport, setOpenTransport] = useState(false);
   const [openCar, setOpenCar] = useState(false);
+  const [showGuide, setShowGuide] = useState(false);
 
   const lat = 37.5614417528647;
   const lng = 127.038394194396;
@@ -129,7 +131,7 @@ const Location: React.FC = () => {
       >
         <div className="location__details">
           <div>디노체컨벤션</div>
-          <div>서울 성동구 왕십리광장로 17 6~7층</div>
+          <div>서울 성동구 왕십리광장로 17 6층</div>
         </div>
 
         {/* 카카오 지도 */}
@@ -154,7 +156,37 @@ const Location: React.FC = () => {
             <span>네이버지도 열기</span>
           </div>
         </div>
+
+        {/* 약도 이미지 버튼 */}
+        <button
+          type="button"
+          className="location__guide-btn"
+          onClick={() => setShowGuide(true)}
+        >
+          🗺️ 약도 이미지 보기
+        </button>
       </div>
+
+      {showGuide && (
+        <div
+          className="location__guide-overlay"
+          onClick={() => setShowGuide(false)}
+        >
+          <div
+            className="location__guide-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img src={locationGuide} alt="약도" />
+            <button
+              type="button"
+              className="location__guide-close"
+              onClick={() => setShowGuide(false)}
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      )}
 
       <div
         ref={dropdownRef}
@@ -217,7 +249,7 @@ const Location: React.FC = () => {
             </div>
           </div>
 
-          <div style={{ marginTop: "8px" }}>
+          {/* <div style={{ marginTop: "8px" }}>
             <a
               href="https://troubled-muskmelon-9ba.notion.site/ATM-29a0a969db72801aa689e6492a374a28"
               target="_blank"
@@ -230,7 +262,7 @@ const Location: React.FC = () => {
             >
               웨딩홀 위치 & ATM 위치 자세히 보기
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

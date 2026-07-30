@@ -30,7 +30,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 16px;
 }
 
 .person {
@@ -55,6 +55,31 @@
   height: 15px;
   flex-shrink: 0;
   color: rgb(191, 149, 128);
+  transform-origin: center;
+}
+
+.person:hover .person-icon,
+.person:active .person-icon {
+  animation: personIconWiggle 0.5s ease-in-out;
+}
+
+@keyframes personIconWiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  40% {
+    transform: rotate(12deg);
+  }
+  60% {
+    transform: rotate(-8deg);
+  }
+  80% {
+    transform: rotate(5deg);
+  }
 }
 
 .person-img {

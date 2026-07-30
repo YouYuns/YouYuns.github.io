@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useMemo, useState } from "react";
 
 import "./App.css";
 import "./css/Cover.css";
@@ -94,6 +94,34 @@ function App() {
   const [coverDone, setCoverDone] = useState(false);
 
   /* =========================
+     🩷 하트 눈송이 (캔버스에 직접 그려서 비동기 로딩 없이 즉시 사용)
+  ============================ */
+  const snowflakeImages = useMemo(() => {
+    // 머티리얼 아이콘 favorite 하트와 동일한, 검증된 매끈한 하트 실루엣 (24x24 기준)
+    const heartPath = new Path2D(
+      "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    );
+
+    const drawHeart = (color: string) => {
+      const size = 56;
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext("2d")!;
+
+      ctx.save();
+      ctx.scale(size / 24, size / 24);
+      ctx.fillStyle = color;
+      ctx.fill(heartPath);
+      ctx.restore();
+
+      return canvas;
+    };
+
+    return ["#f7a8bd", "#f38ba9", "#fbd0da"].map(drawHeart);
+  }, []);
+
+  /* =========================
      🔥 음악 자동재생 (막히면 첫 상호작용에서 조용히 재생)
   ============================ */
   useEffect(() => {
@@ -171,10 +199,15 @@ function App() {
 
   return (
     <div className="App">
-      {/* 눈 효과 */}
+      {/* 하트 눈 효과 */}
       <Snowfall
-        color="white"
-        snowflakeCount={15}
+        images={snowflakeImages}
+        snowflakeCount={6}
+        radius={[5, 9]}
+        speed={[0.5, 1.5]}
+        wind={[-0.3, 0.5]}
+        rotationSpeed={[-1, 1]}
+        opacity={[0.6, 1]}
         style={{
           position: "fixed",
           width: "100vw",
