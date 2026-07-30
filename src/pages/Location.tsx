@@ -147,7 +147,7 @@ const Location: React.FC = () => {
       >
         <div className="location__details">
           <div>디노체컨벤션</div>
-          <div>서울 성동구 왕십리광장로 17 6층</div>
+          <div>서울 성동구 왕십리광장로 17, 6층</div>
         </div>
 
         {/* 카카오 지도 주석처리, 약도 이미지로 대체
