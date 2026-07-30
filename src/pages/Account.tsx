@@ -15,13 +15,15 @@ const Account: React.FC = () => {
 
   const groom_contact: Contact[] = [
     { person: "윤성호", account: "농협은행 040-12-262997", kakaopay: "" },
-    { person: "윤원근", account: "농협은행 040-12-262997", kakaopay: "" },
-    { person: "김경하", account: "농협은행 040-12-262997", kakaopay: "" },
+    // 임시 주석처리
+    // { person: "윤원근", account: "농협은행 040-12-262997", kakaopay: "" },
+    // { person: "김경하", account: "농협은행 040-12-262997", kakaopay: "" },
   ];
 
   const bride_contact: Contact[] = [
-    { person: "최소리", account: "농협은행 040-12-262997", kakaopay: "" },
-    { person: "김남선", account: "농협은행 040-12-262997", kakaopay: "" },
+    { person: "최소리", account: "신한은행 110-464-764462", kakaopay: "" },
+    // 임시 주석처리
+    // { person: "김남선", account: "농협은행 040-12-262997", kakaopay: "" },
   ];
 
   const toggleDropdown = () => {
@@ -37,6 +39,7 @@ const Account: React.FC = () => {
     dropdownRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "center",
+      inline: "nearest",
     });
   };
   const renderContact = (contact: Contact, index: number, type: string) => (

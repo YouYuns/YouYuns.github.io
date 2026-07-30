@@ -60,12 +60,12 @@ const Location: React.FC = () => {
 
   const handleTransportTransitionEnd = () => {
     if (!openTransport) return;
-    transportRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    transportRef.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
   };
 
   const handleCarTransitionEnd = () => {
     if (!openCar) return;
-    carRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    carRef.current?.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
   };
 
   /* 카카오 지도 초기화 주석처리 (약도 이미지로 대체)
@@ -146,6 +146,7 @@ const Location: React.FC = () => {
         <div className="location__details">
           <div>디노체컨벤션</div>
           <div>서울 성동구 왕십리광장로 17 6층</div>
+          <div>서울 성동구 왕십리광장로 (왕십리역)</div>
         </div>
 
         {/* 카카오 지도 주석처리, 약도 이미지로 대체
@@ -236,8 +237,7 @@ const Location: React.FC = () => {
               onTransitionEnd={handleTransportTransitionEnd}
             >
               <div>• 지하철</div>
-              <div>2호선, 5호선 왕십리역 6-1번 출구 맞은편 롯데리아 옆 EV</div>
-              <div>분당선, 중앙선 왕십리역 12번 출구 좌측 안쪽 EV</div>
+              <div>2호선, 5호선 왕십리역 6-1번 출구 맞은편 던킨도너츠 옆 EV</div>
               <div> &nbsp;</div>
               <div>• 버스</div>
               <div>성동구청, 성동경찰서 하차</div>
@@ -269,6 +269,7 @@ const Location: React.FC = () => {
               <div>• 주차</div>
               <div>왕십리 민자역사 비트플렉스 5F</div>
               <div>1,200대 주차 가능 / 2시간 무료</div>
+              <div>5층에 주차해야 찾기 쉬워요</div>
             </div>
           </div>
 
