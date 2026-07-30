@@ -89,7 +89,7 @@ function App() {
      🔥 음악 관련 (추가)
   ============================ */
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [mode, setMode] = useState<"scroll" | "auto">("auto");
   const [coverDone, setCoverDone] = useState(false);
 
@@ -126,9 +126,25 @@ function App() {
   ============================ */
   useEffect(() => {
     const audio = new Audio(myMusic);
-    audio.loop = true;
+    const START_TIME = 4; // 앞 4초는 건너뛰고 시작 (반복 시에도 동일하게 적용)
+    audio.loop = false;
     audio.muted = false;
     audioRef.current = audio;
+
+    const seekToStart = () => {
+      try {
+        audio.currentTime = START_TIME;
+      } catch {}
+    };
+
+    seekToStart();
+    audio.addEventListener("loadedmetadata", seekToStart);
+
+    const handleEnded = () => {
+      seekToStart();
+      audio.play().catch(() => {});
+    };
+    audio.addEventListener("ended", handleEnded);
 
     const startPlayback = () => {
       audio
@@ -146,6 +162,8 @@ function App() {
     return () => {
       window.removeEventListener("pointerdown", resumeOnInteraction);
       window.removeEventListener("keydown", resumeOnInteraction);
+      audio.removeEventListener("loadedmetadata", seekToStart);
+      audio.removeEventListener("ended", handleEnded);
       audio.pause();
     };
   }, []);
