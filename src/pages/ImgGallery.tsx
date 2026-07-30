@@ -11,13 +11,13 @@ import "swiper/css/thumbs";
 
 import { useFadeUp } from "../hooks/useFadeUp";
 
-import p1 from "../images/1.jpg";
-import p2 from "../images/2.jpg";
-import p3 from "../images/3.jpg";
-import p5 from "../images/5.jpg";
-import p6 from "../images/6.jpg";
-import p7 from "../images/7.jpg";
-import p8 from "../images/8.jpg";
+import p1 from "../images/1.webp";
+import p2 from "../images/2.webp";
+import p3 from "../images/3.webp";
+import p5 from "../images/5.webp";
+import p6 from "../images/6.webp";
+import p7 from "../images/7.webp";
+import p8 from "../images/8.webp";
 const ImgGallery: React.FC = () => {
   const { ref: titleRef, show: titleShow } = useFadeUp();
   const { ref: ImgGalleryRef, show: ImgGalleryShow } = useFadeUp();

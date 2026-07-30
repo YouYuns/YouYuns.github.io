@@ -36,7 +36,7 @@ const Account: React.FC = () => {
 
     dropdownRef.current?.scrollIntoView({
       behavior: "smooth",
-      block: "start",
+      block: "center",
     });
   };
   const renderContact = (contact: Contact, index: number, type: string) => (

@@ -20,7 +20,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 14px;
+  gap: 28px;
 }
 
 .location__map-icon {
@@ -110,6 +110,15 @@
 .location__map {
   width: 320px;
   height: 320px;
+}
+
+.location__guide-img {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  margin: 20px auto 32px;
+  border-radius: 8px;
 }
 
 .location__info {

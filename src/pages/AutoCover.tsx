@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../css/AutoCover.css"; // CSS 파일 임포트
-import p1 from "../images/1.jpg";
-import p2 from "../images/2.jpg";
-import p3 from "../images/3.jpg";
-import p4 from "../images/4.jpg";
-import p5 from "../images/5.jpg";
-import p6 from "../images/6.jpg";
-import p7 from "../images/7.jpg";
-import p8 from "../images/8.jpg";
+import p1 from "../images/1.webp";
+import p2 from "../images/2.webp";
+import p3 from "../images/3.webp";
+import p4 from "../images/4.webp";
+import p5 from "../images/5.webp";
+import p6 from "../images/6.webp";
+import p7 from "../images/7.webp";
+import p8 from "../images/8.webp";
 
 const images = [p1, p2, p3, p4, p5, p6, p7, p8];
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../css/Cover.css";
-import mainImg from "../images/main.jpg";
+import mainImg from "../images/main.webp";
 
 interface CoverProps {
   onDone?: () => void;

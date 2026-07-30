@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import kakaoMapIcon from "../images/kakao.png";
 import naverMapIcon from "../images/naver.webp";
 import upArrow from "../images/up-arrow-button.png";
@@ -6,6 +6,7 @@ import downArrow from "../images/down-arrow-button.png";
 import locationGuide from "../images/location-guide.png";
 import { useFadeUp } from "../hooks/useFadeUp";
 
+/* 카카오 지도 주석처리 (약도 이미지로 대체)
 declare global {
   interface Window {
     kakao?: KakaoStatic;
@@ -45,17 +46,29 @@ interface MarkerOptions {
 interface MarkerInstance {
   setMap(map: MapInstance): void;
 }
+*/
 
 const Location: React.FC = () => {
   const { ref: titleRef, show: titleShow } = useFadeUp();
   const { ref: locationrRef, show: locationShow } = useFadeUp();
   const { ref: dropdownRef, show: dropdownShow } = useFadeUp();
 
-  const mapRef = useRef<HTMLDivElement | null>(null);
   const [openTransport, setOpenTransport] = useState(false);
   const [openCar, setOpenCar] = useState(false);
-  const [showGuide, setShowGuide] = useState(false);
+  const transportRef = useRef<HTMLDivElement | null>(null);
+  const carRef = useRef<HTMLDivElement | null>(null);
 
+  const handleTransportTransitionEnd = () => {
+    if (!openTransport) return;
+    transportRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  const handleCarTransitionEnd = () => {
+    if (!openCar) return;
+    carRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  /* 카카오 지도 초기화 주석처리 (약도 이미지로 대체)
   const lat = 37.5614417528647;
   const lng = 127.038394194396;
   useEffect(() => {
@@ -108,6 +121,7 @@ const Location: React.FC = () => {
       if (retryTimer) clearTimeout(retryTimer);
     };
   }, []);
+  */
 
   const gotoKakaoMap = () => {
     window.location.href =
@@ -134,8 +148,10 @@ const Location: React.FC = () => {
           <div>서울 성동구 왕십리광장로 17 6층</div>
         </div>
 
-        {/* 카카오 지도 */}
+        {/* 카카오 지도 주석처리, 약도 이미지로 대체
         <div ref={mapRef} className="location__map" />
+        */}
+        <img src={locationGuide} alt="약도" className="location__guide-img" />
 
         {/* 지도 앱 / 웹 이동 버튼 */}
         <div className="location__map-icon-box">
@@ -157,7 +173,7 @@ const Location: React.FC = () => {
           </div>
         </div>
 
-        {/* 약도 이미지 버튼 */}
+        {/* 약도 이미지를 지도 자리에서 바로 보여주므로 버튼/모달 주석처리
         <button
           type="button"
           className="location__guide-btn"
@@ -165,8 +181,10 @@ const Location: React.FC = () => {
         >
           🗺️ 약도 이미지 보기
         </button>
+        */}
       </div>
 
+      {/*
       {showGuide && (
         <div
           className="location__guide-overlay"
@@ -187,6 +205,7 @@ const Location: React.FC = () => {
           </div>
         </div>
       )}
+      */}
 
       <div
         ref={dropdownRef}
@@ -210,9 +229,11 @@ const Location: React.FC = () => {
               />
             </div>
             <div
+              ref={transportRef}
               className={`location__dropdown-content ${
                 openTransport ? "open" : ""
               }`}
+              onTransitionEnd={handleTransportTransitionEnd}
             >
               <div>• 지하철</div>
               <div>2호선, 5호선 왕십리역 6-1번 출구 맞은편 롯데리아 옆 EV</div>
@@ -241,7 +262,9 @@ const Location: React.FC = () => {
               />
             </div>
             <div
+              ref={carRef}
               className={`location__dropdown-content ${openCar ? "open" : ""}`}
+              onTransitionEnd={handleCarTransitionEnd}
             >
               <div>• 주차</div>
               <div>왕십리 민자역사 비트플렉스 5F</div>

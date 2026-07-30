@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { FiPhoneCall } from "react-icons/fi";
 import "../css/Modal.css";
 import ContactModal from "../components/ContactModal";
-import sDad from "../images/1.jpg";
-import sMom from "../images/1.jpg";
+import sDad from "../images/1.webp";
+import sMom from "../images/1.webp";
 import sMain from "../images/Contact-2.jpg";
 import eMain from "../images/Contact-1.jpg";
-import eMom from "../images/1.jpg";
+import eMom from "../images/1.webp";
 import { useFadeUp } from "../hooks/useFadeUp";
 
 const Contact: React.FC = () => {
