@@ -77,7 +77,7 @@ const AutoCover: React.FC = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 5500);
+    }, 7000);
   };
 
   useEffect(() => {
