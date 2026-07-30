@@ -72,7 +72,7 @@ const LinkShare: React.FC = () => {
       content: {
         title: "성호&소리, 결혼합니다",
         description: "우리 결혼식에 초대합니다! 함께 축복해주세요.",
-        imageUrl: "https://youyuns.github.io/1.jpg",
+        imageUrl: "https://youyuns.github.io/main.webp",
         link: { webUrl: shareUrl, mobileWebUrl: shareUrl }, // 파라미터 포함 URL
       },
       buttons: [
