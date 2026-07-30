@@ -101,9 +101,9 @@
 /* 드롭다운 전체 */
 .contact__dropdown {
   width: 100vw;
-  max-width: 480px;
-  margin-left: calc(-10vw + max(0px, (100vw - 480px) / 2));
-  margin-right: calc(-10vw + max(0px, (100vw - 480px) / 2));
+  max-width: 520px;
+  margin-left: calc(-10vw + max(0px, (100vw - 520px) / 2));
+  margin-right: calc(-10vw + max(0px, (100vw - 520px) / 2));
   box-sizing: border-box;
   padding: 0 20px;
   margin-top: 50px;
