@@ -19,7 +19,11 @@ const Contact: React.FC = () => {
   } | null>(null);
 
   const groom = {
-    main: { name: "신랑 윤성호", src: sMain, phone: "010-4479-6511" },
+    main: {
+      name: "신랑 윤성호",
+      src: sMain,
+      phone: "010-4479-6511",
+    },
     family: [
       { name: "아버지 윤원근", src: sDad, phone: "010-6335-6511" },
       { name: "어머니 김경하", src: sMom, phone: "010-7120-6511" },
@@ -32,7 +36,12 @@ const Contact: React.FC = () => {
   };
 
   const renderPerson = (
-    person: { name: string; src: string; phone: string },
+    person: {
+      name: string;
+      src: string;
+      phone: string;
+      imgScaleDown?: boolean;
+    },
     key: string,
     showImg: boolean = true
   ) => (
@@ -45,12 +54,21 @@ const Contact: React.FC = () => {
       }}
       style={{ cursor: "pointer" }}
     >
-      {showImg ? (
-        <img src={person.src} alt={person.name} className="person-img" />
-      ) : (
-        <FiPhoneCall className="person-icon" />
+      {showImg && (
+        <span className="person-img-wrap">
+          <img
+            src={person.src}
+            alt={person.name}
+            className={`person-img${
+              person.imgScaleDown ? " person-img--scale-down" : ""
+            }`}
+          />
+        </span>
       )}
-      <p className="person-name">{person.name}</p>
+      <span className="person-name-row">
+        <FiPhoneCall className="person-icon" />
+        <p className="person-name">{person.name}</p>
+      </span>
     </div>
   );
 
