@@ -117,7 +117,11 @@ const Calendar: React.FC = () => {
           </div>
         </div>
       </div>
-      <div ref={timerRef} className={`fade-up ${timerShow ? "show" : ""}`}>
+      <div
+        ref={timerRef}
+        className={`fade-up ${timerShow ? "show" : ""}`}
+        style={{ width: "100%" }}
+      >
         <div className="calendar__remain">
           <span>{timeLeft.days}일</span>
           <span>{timeLeft.hours}시간</span>

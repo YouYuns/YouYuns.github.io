@@ -127,17 +127,61 @@
   height: 320px;
 }
 
-.location__guide-img {
-  display: block;
+.location__guide-wrapper {
+  position: relative;
   width: 100vw;
   max-width: 520px;
   margin-left: calc(-10vw + max(0px, (100vw - 520px) / 2));
   margin-right: calc(-10vw + max(0px, (100vw - 520px) / 2));
+  margin-top: 16px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.location__guide-zoom-box {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.location__guide-img {
+  display: block;
+  width: 100%;
+  max-width: 520px;
   box-sizing: border-box;
   padding: 0 8px;
   height: auto;
-  margin-top: 20px;
-  margin-bottom: 32px;
+  cursor: pointer;
+  transform-origin: center center;
+}
+
+.location__zoom-reset-btn {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  z-index: 10;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(40, 40, 40, 0.75);
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-family: "Cafe24Oneprettynight", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.location__guide-hint {
+  text-align: center;
+  font-size: 13px;
+  color: #8c7873;
+  margin-top: 8px;
+  font-family: "Cafe24Oneprettynight", sans-serif;
   cursor: pointer;
 }
 

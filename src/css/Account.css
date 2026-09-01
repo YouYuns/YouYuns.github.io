@@ -169,10 +169,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
   font-family: "Cafe24Oneprettynight", sans-serif;
   font-size: 15px;
   color: #332d2c;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+}
+
+.account-text {
+  flex: 1;
+  font-size: 15px;
+  color: #332d2c;
+  white-space: nowrap;
 }
 
 .contact__item:last-child {

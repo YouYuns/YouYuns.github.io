@@ -1,88 +1,235 @@
-.image-gallery {
-  width: 320px;
+/* ===== 갤러리 모드 전환 아이콘 버튼 ===== */
+.gallery-mode-toggle {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  max-width: 360px;
+  width: 100%;
+  margin: 0 auto 14px;
+  padding: 0 4px;
+  box-sizing: border-box;
 }
 
-
-.image-gallery-fullscreen-button .image-gallery-svg, 
-.image-gallery-play-button .image-gallery-svg {
-  display: none;
+.gallery-mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid #e2d5ce;
+  background: #ffffff;
+  color: #8c7a76;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.image-gallery-thumbnail-image {
-  /* display: none; */
+@media (hover: hover) and (pointer: fine) {
+  .gallery-mode-btn:hover {
+    background: #fdf6f3;
+    color: #4a3535;
+    border-color: #d6c4bc;
+  }
 }
 
-/* 갤러리 전체 폭 (모바일 기준) */
-.image-gallery {
+.gallery-mode-btn.active {
+  background: #ede3de;
+  border-color: #dfd0c9;
+  color: #5f1919;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== 1. 갤러리형 뷰 (사진이 많아져도 6장 단위로 무한 확장되는 매거진 벤토 콜라주) ===== */
+.gallery-grid-container {
   width: 100%;
   max-width: 360px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
-/* 슬라이드 영역 높이 고정 */
-.image-gallery-slide-wrapper {
-  height: 420px; /* 🔥 여기 조절 */
+.gallery-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 118px;
+  grid-auto-flow: dense;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* 슬라이드 기준점 고정 */
-.image-gallery-slide {
+@media (max-width: 340px) {
+  .gallery-grid-layout {
+    grid-auto-rows: 100px;
+    gap: 4px;
+  }
+}
+
+/* 개별 사진 아이템 (단정한 사각형 마감) */
+.gallery-grid-item {
   position: relative;
-  height: 420px; /* wrapper랑 동일 */
   overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #f4eae4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* 이미지 절대 위치 고정 */
-.image-gallery-slide img {
-  position: absolute;
-  inset: 0;
+.gallery-grid-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 16px;
-}
-.image-gallery {
-  width: 320px;
-}
-
-
-.image-gallery-fullscreen-button .image-gallery-svg, 
-.image-gallery-play-button .image-gallery-svg {
-  display: none;
+  display: block;
+  border-radius: 4px;
+  transition: transform 0.3s ease, filter 0.2s ease;
 }
 
-.image-gallery-thumbnail-image {
-  /* display: none; */
+@media (hover: hover) and (pointer: fine) {
+  .gallery-grid-item:hover img {
+    transform: scale(1.04);
+    filter: brightness(0.96);
+  }
 }
 
-/* 갤러리 전체 폭 (모바일 기준) */
-.image-gallery {
+.gallery-grid-item:active img {
+  transform: scale(0.98);
+}
+
+/* 6장 단위 자동 반복 매거진 벤토 패턴 (6장 = 3x3 1판, 12장 = 3x6 2판...) */
+.gallery-grid-item.bento-0 {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.gallery-grid-item.bento-1 {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.gallery-grid-item.bento-2 {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.gallery-grid-item.bento-3 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.gallery-grid-item.bento-4 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.gallery-grid-item.bento-5 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* 더보기 / 접기 버튼 */
+.gallery-more-btn-wrap {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.gallery-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 32px;
+  border-radius: 25px;
+  border: 1px solid #e0d0c7;
+  background: #ffffff;
+  color: rgb(95, 25, 25);
+  font-family: "Cafe24Oneprettynight", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-more-btn:hover {
+    background: #fdf5f2;
+    border-color: #d6c0b5;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.gallery-more-btn:active {
+  transform: scale(0.97);
+}
+
+/* ===== 2. 슬라이드형 갤러리 (갤러리형 9판짜리 크기와 1:1 일치) ===== */
+.gallery-slide-container {
   width: 100%;
   max-width: 360px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
+.gallery-main-swiper {
+  width: 100%;
+  height: 366px;
+  border-radius: 6px;
+  overflow: hidden;
+}
 
-/* 이미지 비율 제어 */
-.image-gallery-slide img {
+.gallery-main-slide {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ⭐ 중요 */
-  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdf7f7;
 }
-.disable-swipe .image-gallery-slide,
-.disable-swipe .image-gallery-thumbnails-wrapper {
-  touch-action: pan-y !important;
+
+.gallery-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* 썸네일 네비게이션 */
+.gallery-thumb-swiper {
+  margin-top: 8px;
+  width: 100%;
+  height: 62px;
+}
+
+.gallery-thumb-slide {
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0.55;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.gallery-thumb-slide.swiper-slide-thumb-active {
+  opacity: 1;
+  border: 2px solid rgb(213, 168, 145);
+  box-sizing: border-box;
+}
+
+.gallery-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: white !important; /* 화살표 색상 */
+  color: white !important;
 }
 
-/* 화살표 위치 조정 (썸네일 기준) */
 .swiper-button-next {
   z-index: 9999 !important;
-}
-
-.swiper-button-prev {
 }

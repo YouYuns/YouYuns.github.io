@@ -138,6 +138,90 @@ const Location: React.FC = () => {
   }, []);
   */
 
+  // Inline touch zoom state for location map image
+  const [mapScale, setMapScale] = useState(1);
+  const [mapOffset, setMapOffset] = useState({ x: 0, y: 0 });
+  const touchState = useRef<{
+    initialDist: number;
+    initialScale: number;
+    startX: number;
+    startY: number;
+    startOffsetX: number;
+    startOffsetY: number;
+  }>({
+    initialDist: 0,
+    initialScale: 1,
+    startX: 0,
+    startY: 0,
+    startOffsetX: 0,
+    startOffsetY: 0,
+  });
+  const lastTapRef = useRef<number>(0);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      touchState.current.initialDist = dist;
+      touchState.current.initialScale = mapScale;
+    } else if (e.touches.length === 1) {
+      touchState.current.startX = e.touches[0].clientX;
+      touchState.current.startY = e.touches[0].clientY;
+      touchState.current.startOffsetX = mapOffset.x;
+      touchState.current.startOffsetY = mapOffset.y;
+
+      // Double tap detection
+      const now = Date.now();
+      if (now - lastTapRef.current < 300) {
+        if (mapScale > 1.1) {
+          setMapScale(1);
+          setMapOffset({ x: 0, y: 0 });
+        } else {
+          setMapScale(2.2);
+        }
+      }
+      lastTapRef.current = now;
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length === 2 && touchState.current.initialDist > 0) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const newScale = Math.min(
+        Math.max(1, (dist / touchState.current.initialDist) * touchState.current.initialScale),
+        4
+      );
+      setMapScale(newScale);
+    } else if (e.touches.length === 1 && mapScale > 1.05) {
+      const deltaX = e.touches[0].clientX - touchState.current.startX;
+      const deltaY = e.touches[0].clientY - touchState.current.startY;
+      setMapOffset({
+        x: touchState.current.startOffsetX + deltaX,
+        y: touchState.current.startOffsetY + deltaY,
+      });
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length < 2) {
+      touchState.current.initialDist = 0;
+      if (mapScale < 1.05) {
+        setMapScale(1);
+        setMapOffset({ x: 0, y: 0 });
+      }
+    }
+  };
+
+  const resetMapZoom = () => {
+    setMapScale(1);
+    setMapOffset({ x: 0, y: 0 });
+  };
+
   const gotoKakaoMap = () => {
     window.location.href =
       "https://map.kakao.com/link/search/왕십리%20디노체%20컨벤션";
@@ -164,16 +248,40 @@ const Location: React.FC = () => {
           <div>비트플렉스 6층</div>
         </div>
 
-        {/* 카카오 지도 주석처리, 약도 이미지로 대체
-        <div ref={mapRef} className="location__map" />
-        */}
-        <img
-          src={locationGuide}
-          alt="약도 (클릭 시 크게보기)"
-          className="location__guide-img"
-          onClick={() => setShowGuideModal(true)}
-          title="클릭 시 크게보기"
-        />
+        {/* 약도 이미지 (두 손가락 핀치 줌 / 더블탭 확대 / 클릭 시 팝업 지원) */}
+        <div className="location__guide-wrapper">
+          <div
+            className="location__guide-zoom-box"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <img
+              src={locationGuide}
+              alt="약도 (두 번 탭 또는 손가락으로 확대)"
+              className="location__guide-img"
+              style={{
+                transform: `scale(${mapScale}) translate(${mapOffset.x / mapScale}px, ${mapOffset.y / mapScale}px)`,
+                transition: touchState.current.initialDist === 0 ? "transform 0.2s ease" : "none",
+                touchAction: mapScale > 1 ? "none" : "pan-y",
+              }}
+              onClick={() => {
+                if (mapScale === 1) {
+                  setShowGuideModal(true);
+                }
+              }}
+            />
+            {mapScale > 1.1 && (
+              <button
+                type="button"
+                className="location__zoom-reset-btn"
+                onClick={resetMapZoom}
+              >
+                원래 크기로 (1x)
+              </button>
+            )}
+          </div>
+        </div>
 
         {/* 지도 앱 / 웹 이동 버튼 */}
         <div className="location__map-icon-box">
@@ -202,11 +310,11 @@ const Location: React.FC = () => {
         slides={[{ src: locationGuide }]}
         plugins={[Zoom]}
         zoom={{
-          maxZoomPixelRatio: 4,
+          maxZoomPixelRatio: 5,
           zoomInMultiplier: 2,
           doubleTapDelay: 300,
           doubleClickDelay: 300,
-          pinchZoomDistanceFactor: 100,
+          pinchZoomDistanceFactor: 50,
           scrollToZoom: true,
         }}
         render={{

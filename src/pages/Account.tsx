@@ -29,29 +29,29 @@ const Account: React.FC = () => {
       id: "groom",
       title: "신랑측 계좌번호",
       contacts: [
-        { person: "신랑 윤성호", account: "농협은행 040-12-262997" },
+        { person: "윤성호", account: "농협은행 040-12-262997" },
       ],
     },
     {
       id: "bride",
       title: "신부측 계좌번호",
       contacts: [
-        { person: "신부 최소리", account: "신한은행 110-464-764462" },
+        { person: "최소리", account: "신한은행 110-464-764462" },
       ],
     },
     {
       id: "groom-parents",
       title: "혼주 계좌번호 (신랑측)",
       contacts: [
-        { person: "아버지 윤원근", account: "농협은행 040-12-262997" },
-        { person: "어머니 김경하", account: "농협은행 040-12-262997" },
+        { person: "윤원근", account: "농협은행 040-12-262997" },
+        { person: "김경하", account: "농협은행 040-12-262997" },
       ],
     },
     {
       id: "bride-parents",
       title: "혼주 계좌번호 (신부측)",
       contacts: [
-        { person: "어머니 김남선", account: "농협은행 040-12-262997" },
+        { person: "김남선", account: "농협은행 040-12-262997" },
       ],
     },
   ];
@@ -119,7 +119,9 @@ const Account: React.FC = () => {
                 </button>
 
                 <div
-                  ref={(el) => (contentRefs.current[section.id] = el)}
+                  ref={(el) => {
+                    contentRefs.current[section.id] = el;
+                  }}
                   className={`account-accordion-content ${
                     isOpen ? "open" : ""
                   }`}
@@ -132,8 +134,8 @@ const Account: React.FC = () => {
                         key={`${section.id}-${idx}`}
                         className="contact__item"
                       >
-                        <span>
-                          {contact.person}: {contact.account}
+                        <span className="account-text">
+                          {contact.person} {contact.account}
                         </span>
                         <button
                           type="button"
