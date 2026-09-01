@@ -18,44 +18,57 @@
 .location__map-icon-box {
   margin-bottom: 20px;
   width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex-wrap: nowrap;
 }
 
 .location__map-icon {
-  width: 22px;
-}
-
-.location__map-item:hover {
-  cursor: pointer;
-  background-color: rgb(245, 245, 245);
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 .location__map-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
   background-color: #fff;
-  border-radius: 30px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
+  flex: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.location__map-item:hover {
+  background-color: #fcf5f3;
+}
+
+.location__map-item:active {
+  transform: scale(0.97);
 }
 
 .location__map-item span {
   margin-left: 0;
-  font-size: 16px;
+  font-size: 14px;
+  font-family: "Cafe24Oneprettynight", sans-serif;
   white-space: nowrap;
 }
 
 @media (max-width: 340px) {
   .location__map-item {
-    padding: 8px 12px;
+    padding: 8px 8px;
   }
   .location__map-item span {
-    font-size: 14px;
+    font-size: 12.5px;
   }
 }
 
