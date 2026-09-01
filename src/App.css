@@ -29,9 +29,8 @@
 }
 html,
 body {
-  overflow-y: auto;
-  touch-action: pan-y;
-  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  padding: 0;
 }
 .flower {
   width: 150px;

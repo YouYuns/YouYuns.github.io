@@ -59,19 +59,32 @@ function App() {
   }, []);
 
   /* ===========================
-     vh 계산 (기존)
+     vh 고정 계산 (스크롤 시 모바일 주소창/하단바 여닫힘으로 인한 화면 흔들림 방지)
   ============================ */
   useEffect(() => {
+    let lastWidth = window.innerWidth;
+
     const setVh = () => {
-      document.documentElement.style.setProperty(
-        "--vh",
-        `${window.innerHeight * 0.01}px`
-      );
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    const handleResize = () => {
+      // 모바일 스크롤 시 URL 바 높이 변화로 발생하는 resize 이벤트는 무시하고, 화면 회전/너비 변경 시에만 업데이트
+      if (Math.abs(window.innerWidth - lastWidth) > 5) {
+        lastWidth = window.innerWidth;
+        setVh();
+      }
     };
 
     setVh();
-    window.addEventListener("resize", setVh);
-    return () => window.removeEventListener("resize", setVh);
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", setVh);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", setVh);
+    };
   }, []);
 
   /* ===========================
@@ -228,8 +241,9 @@ function App() {
         opacity={[0.6, 1]}
         style={{
           position: "fixed",
-          width: "100vw",
-          height: "100vh",
+          inset: 0,
+          width: "100%",
+          height: "100%",
           zIndex: 9999,
           pointerEvents: "none",
         }}
