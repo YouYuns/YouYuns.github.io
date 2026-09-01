@@ -7,7 +7,7 @@
   align-items: center;
 }
 .location__details {
-  margin: 15px 0;
+  margin: 20px 0 24px;
   font-size: 22px;
 }
 
@@ -16,7 +16,8 @@
 }
 
 .location__map-icon-box {
-  margin-bottom: 20px;
+  margin-top: 8px;
+  margin-bottom: 36px;
   width: 100%;
   max-width: 320px;
   margin-left: auto;
@@ -143,11 +144,11 @@
 .location__guide-wrapper {
   position: relative;
   width: 100vw;
-  max-width: 520px;
-  margin-left: calc(-10vw + max(0px, (100vw - 520px) / 2));
-  margin-right: calc(-10vw + max(0px, (100vw - 520px) / 2));
-  margin-top: 16px;
-  margin-bottom: 24px;
+  max-width: 560px;
+  margin-left: calc(-10vw + max(0px, (100vw - 560px) / 2));
+  margin-right: calc(-10vw + max(0px, (100vw - 560px) / 2));
+  margin-top: 24px;
+  margin-bottom: 28px;
   box-sizing: border-box;
 }
 
@@ -165,7 +166,7 @@
 .location__guide-img {
   display: block;
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   box-sizing: border-box;
   padding: 0 8px;
   height: auto;
@@ -203,6 +204,8 @@
   width: 100%;
   text-align: center;
   font-size: 22px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .location__info div {

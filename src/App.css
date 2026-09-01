@@ -21,7 +21,7 @@
 }
 .main_container {
   position: relative;
-  max-width: 520px;
+  max-width: 560px;
   height: 8700px; /* Scroll 모드일 때 전체 길이 */
 }
 .autocover-container {
@@ -47,9 +47,9 @@ button {
 
 .bc-pink {
   width: 100vw;
-  max-width: 520px;
-  margin-left: calc(-10vw + max(0px, (100vw - 520px) / 2));
-  margin-right: calc(-10vw + max(0px, (100vw - 520px) / 2));
+  max-width: 560px;
+  margin-left: calc(-10vw + max(0px, (100vw - 560px) / 2));
+  margin-right: calc(-10vw + max(0px, (100vw - 560px) / 2));
   padding: 35px 20px;
   box-sizing: border-box;
   background-color: #fdf7f7;

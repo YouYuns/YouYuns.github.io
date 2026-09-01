@@ -252,7 +252,7 @@ function App() {
         ref={galleryTopRef}
         style={{
           position: "relative",
-          maxWidth: "520px",
+          maxWidth: "560px",
           width: "100%",
           margin: "0 auto",
           height: mode === "auto" ? "600px" : "8700px",
