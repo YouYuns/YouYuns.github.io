@@ -1,4 +1,8 @@
 import React, { useRef, useState } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
+
 import kakaoMapIcon from "../images/kakao.png";
 import naverMapIcon from "../images/naver.webp";
 import upArrow from "../images/up-arrow-button.png";
@@ -56,6 +60,7 @@ const Location: React.FC = () => {
   const [openTransport, setOpenTransport] = useState(false);
   const [openCar, setOpenCar] = useState(false);
   const [openAtm, setOpenAtm] = useState(false);
+  const [showGuideModal, setShowGuideModal] = useState(false);
   const transportRef = useRef<HTMLDivElement | null>(null);
   const carRef = useRef<HTMLDivElement | null>(null);
   const atmRef = useRef<HTMLDivElement | null>(null);
@@ -162,7 +167,13 @@ const Location: React.FC = () => {
         {/* 카카오 지도 주석처리, 약도 이미지로 대체
         <div ref={mapRef} className="location__map" />
         */}
-        <img src={locationGuide} alt="약도" className="location__guide-img" />
+        <img
+          src={locationGuide}
+          alt="약도 (클릭 시 크게보기)"
+          className="location__guide-img"
+          onClick={() => setShowGuideModal(true)}
+          title="클릭 시 크게보기"
+        />
 
         {/* 지도 앱 / 웹 이동 버튼 */}
         <div className="location__map-icon-box">
@@ -183,40 +194,26 @@ const Location: React.FC = () => {
             <span>네이버지도 열기</span>
           </div>
         </div>
-
-        {/* 약도 이미지를 지도 자리에서 바로 보여주므로 버튼/모달 주석처리
-        <button
-          type="button"
-          className="location__guide-btn"
-          onClick={() => setShowGuide(true)}
-        >
-          🗺️ 약도 이미지 보기
-        </button>
-        */}
       </div>
 
-      {/*
-      {showGuide && (
-        <div
-          className="location__guide-overlay"
-          onClick={() => setShowGuide(false)}
-        >
-          <div
-            className="location__guide-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img src={locationGuide} alt="약도" />
-            <button
-              type="button"
-              className="location__guide-close"
-              onClick={() => setShowGuide(false)}
-            >
-              닫기
-            </button>
-          </div>
-        </div>
-      )}
-      */}
+      <Lightbox
+        open={showGuideModal}
+        close={() => setShowGuideModal(false)}
+        slides={[{ src: locationGuide }]}
+        plugins={[Zoom]}
+        zoom={{
+          maxZoomPixelRatio: 4,
+          zoomInMultiplier: 2,
+          doubleTapDelay: 300,
+          doubleClickDelay: 300,
+          pinchZoomDistanceFactor: 100,
+          scrollToZoom: true,
+        }}
+        render={{
+          buttonPrev: () => null,
+          buttonNext: () => null,
+        }}
+      />
 
       <div
         ref={dropdownRef}

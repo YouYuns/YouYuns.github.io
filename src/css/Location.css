@@ -20,7 +20,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 28px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .location__map-icon {
@@ -40,12 +41,22 @@
   background-color: #fff;
   border-radius: 30px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .location__map-item span {
   margin-left: 0;
   font-size: 16px;
   white-space: nowrap;
+}
+
+@media (max-width: 340px) {
+  .location__map-item {
+    padding: 8px 12px;
+  }
+  .location__map-item span {
+    font-size: 14px;
+  }
 }
 
 .location__guide-btn {
@@ -70,41 +81,45 @@
 .location__guide-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
-  padding: 20px;
+  z-index: 9999;
+  padding: 16px;
 }
 
 .location__guide-content {
-  max-width: 520px;
+  max-width: 560px;
   width: 100%;
-  max-height: 85vh;
+  max-height: 90vh;
   overflow-y: auto;
-  background: #f9f5f2;
-  border-radius: 12px;
+  background: #fff8f6;
+  border-radius: 16px;
   padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .location__guide-content img {
   width: 100%;
+  height: auto;
   border-radius: 8px;
 }
 
 .location__guide-close {
-  padding: 10px 24px;
+  padding: 10px 28px;
   border: none;
   border-radius: 30px;
   background-color: rgb(95, 25, 25);
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
+  font-family: inherit;
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .location__map {
@@ -114,11 +129,16 @@
 
 .location__guide-img {
   display: block;
-  width: 100%;
+  width: 100vw;
   max-width: 520px;
+  margin-left: calc(-10vw + max(0px, (100vw - 520px) / 2));
+  margin-right: calc(-10vw + max(0px, (100vw - 520px) / 2));
+  box-sizing: border-box;
+  padding: 0 8px;
   height: auto;
-  margin: 20px auto 32px;
-  border-radius: 8px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  cursor: pointer;
 }
 
 .location__info {

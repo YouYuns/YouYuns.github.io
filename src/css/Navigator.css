@@ -58,6 +58,24 @@
   gap: 20px;
 }
 
+@media (max-width: 360px) {
+  .nav-items {
+    gap: 12px;
+  }
+  .nav-item {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 320px) {
+  .nav-items {
+    gap: 8px;
+  }
+  .nav-item {
+    font-size: 14px;
+  }
+}
+
 .nav-item {
   cursor: pointer;
   font-size: 17px;

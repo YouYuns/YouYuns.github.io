@@ -77,90 +77,112 @@
   font-size: 15px;
 }
 
-/* 드롭다운 css */
+/* =========================================
+   4단 아코디언 드롭다운 (레퍼런스 이미지 디자인)
+========================================= */
 
-/* 버튼 디자인 */
-.contact-button {
-  font-size: 18px;
-  padding: 13px 20px;
-  border: 0;
-  border-radius: 5px;
-  background: rgb(213, 168, 145);
-  color: #fff;
-  font-family: "Cafe24Oneprettynight", sans-serif;
-  text-align: center;
+.account-accordion-wrapper {
+  width: 100%;
+  max-width: 360px;
+  margin: 35px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.account-accordion-item {
+  width: 100%;
+}
+
+/* 버튼 바 (이미지 레퍼런스 스타일) */
+.account-accordion-btn {
+  position: relative;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #ede3de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  margin-top: 40px;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+  font-family: "Cafe24Oneprettynight", sans-serif;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .contact-button:hover {
-    background: rgb(191, 149, 128);
+  .account-accordion-btn:hover {
+    background: #e2d6d0;
   }
 }
-/* 드롭다운 전체 */
-.contact__dropdown {
-  width: 100vw;
-  max-width: 520px;
-  margin-left: calc(-10vw + max(0px, (100vw - 520px) / 2));
-  margin-right: calc(-10vw + max(0px, (100vw - 520px) / 2));
-  box-sizing: border-box;
-  padding: 0 20px;
-  margin-top: 50px;
+
+.account-accordion-btn.open {
+  background: #dfd0c9;
+}
+
+.account-accordion-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #554341;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+.account-accordion-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+/* 드롭다운 콘텐츠 영역 */
+.account-accordion-content {
+  width: 100%;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.4s ease, opacity 1s ease;
+  padding: 0;
+  transition: max-height 0.5s ease, opacity 0.3s ease, padding 0.4s ease;
+  box-sizing: border-box;
 }
 
-.contact__dropdown.open {
-  max-height: 1100px; /* 충분히 큰 값 */
+.account-accordion-content.open {
+  max-height: 500px;
   opacity: 1;
-}
-/* 신랑/신부 섹션 */
-.contact__section {
-  width: 100%;
-  margin: 20px auto 10px;
+  padding-top: 8px;
+  padding-bottom: 4px;
 }
 
-/* 신랑/신부 제목 */
-.contact__section h4 {
-  margin-bottom: 10px;
-  font-weight: bold;
-  text-align: center;
-}
-.contact-button.open {
-  background: rgb(191, 149, 128);
-}
-/* 계좌번호 항목 */
-.contact__section p {
-  width: 100%;
-  background: #fff;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  padding: 10px 15px;
+/* 열렸을 때 계좌 정보 카드 (깔끔하고 화사한 화이트 & 소프트 테두리) */
+.contact__item {
+  background: #ffffff;
+  border: 1px solid #f0e5e0;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  padding: 10px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: "Cafe24Oneprettynight", sans-serif;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-.contact__item {
-  background: rgb(245, 245, 245);
-  border-radius: 5px;
-  margin-bottom: 5px;
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between; /* 계좌번호와 버튼 오른쪽 정렬 */
-  align-items: center;
-  font-family: "Cafe24Oneprettynight", sans-serif;
-  font-size: calc(0.9rem + 2px);
-  color: #202121;
+  font-size: 15px;
+  color: #332d2c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
+.contact__item:last-child {
+  margin-bottom: 0;
+}
+
+/* 기존 copy-button 스타일 */
 .copy-button {
-  padding: 5px 10px;
-  font-size: calc(0.7rem + 2px);
+  padding: 5px 12px;
+  font-size: 13px;
   border: 0;
   border-radius: 5px;
   background: rgb(213, 168, 145);
@@ -169,15 +191,33 @@
   font-family: "Cafe24Oneprettynight", sans-serif;
   cursor: pointer;
   text-align: center;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
+@media (hover: hover) and (pointer: fine) {
+  .copy-button:hover {
+    background: rgb(191, 149, 128);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+}
+
+.copy-button:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 340px) {
+  .account-accordion-btn {
+    padding: 10px 12px;
+  }
+  .account-accordion-title {
+    font-size: 14.5px;
+  }
+  .contact__item {
+    font-size: 13.5px;
+    padding: 8px 10px;
+  }
+  .copy-button {
+    font-size: 12px;
+    padding: 4px 8px;
   }
 }

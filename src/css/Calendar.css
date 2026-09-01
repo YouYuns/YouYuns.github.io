@@ -1,86 +1,108 @@
+.calendar__line {
+  width: 100%;
+  max-width: 520px;
+  height: 1px;
+  background-color: rgb(192, 99, 99);
+}
 
+.calendar__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
 
-  .calendar__line {
-    width: 100%;
-    max-width: 520px;
-    height: 1px;
-    background-color: rgb(192, 99, 99);
-  }
-  
-  .calendar__body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  .calendar__weekdays {
-   
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    width: 330px;
-    margin-top: 20px;
-    margin-bottom: 15px;
-  }
+.calendar__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  max-width: 330px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.calendar__weekdays span {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.calendar__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  gap: 8px;
+}
+
+.calendar__day {
+  font-size: 20px;
+  padding: 8px 4px;
+  text-align: center;
+  position: relative; /* 상대 위치 설정 */
+}
+
+.calendar__day.heart {
+  position: relative;
+  font-weight: bold;
+}
+
+.calendar__day.heart::after {
+  content: "\2665"; /* 유니코드 하트 문자 */
+  font-size: 42px;
+  color: #ff56226c;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.calendar__remain {
+  font-size: 20px;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+  border: 1px dotted rgb(95, 25, 25);
+  padding: 18px 14px;
+  box-sizing: border-box;
+}
+
+.calendar__remain span {
+  margin-right: 10px;
+}
+
+.calendar__remain-day {
+  color: rgb(218, 82, 82);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* 갤럭시 폴드 등 초소형 기기 (width <= 340px) */
+@media (max-width: 340px) {
   .calendar__weekdays span {
-     font-size: 20px;
-    font-weight: bold;
+    font-size: 16px;
   }
-  
-  .calendar__days {
-    
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-  }
-  
   .calendar__day {
-    font-size: 20px;
-    padding: 9px;
-    text-align: center;
-    position: relative; /* 상대 위치 설정 */
+    font-size: 16px;
+    padding: 6px 2px;
   }
-  
-  
-  .calendar__day.heart {
-    position: relative;
-    font-weight: bold;
+  .calendar__days {
+    gap: 4px;
   }
-  
-  .calendar__day.heart::after {
-    content: '\2665'; /* 유니코드 하트 문자 */
-    font-size: 42px;
-    color: #ff56226c;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .red {
-    color: red;
-  }
-  
-  .blue {
-    color: blue;
-  }
-
   .calendar__remain {
-      font-size: 20px;
-
-    width: 300px;
-    margin: 20px 0;
-    border: 1px dotted rgb(95, 25, 25);
-    padding: 20px 15px;
-   
+    font-size: 17px;
+    padding: 14px 10px;
   }
-
-  .calendar__remain span {
-    margin-right: 10px;
-  }
-
   .calendar__remain-day {
-    color: rgb(218, 82, 82);
-    font-weight: bold;
-      font-size: 20px;
+    font-size: 17px;
   }
+}

@@ -13,6 +13,12 @@
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 340px) {
+  .container {
+    margin: 20px 12px 20px;
+  }
+}
 .main_container {
   position: relative;
   max-width: 520px;
