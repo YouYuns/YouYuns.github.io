@@ -24,7 +24,7 @@ import Account from "./pages/Account";
 import Contact from "./pages/Contact";
 import Location from "./pages/Location";
 import ImgGallery from "./pages/ImgGallery";
-import Scroll from "./pages/Scroll";
+import Scroll, { TOTAL_SCROLL_DISTANCE } from "./pages/Scroll";
 import AutoCover from "./pages/AutoCover";
 // import Rsvp from "./pages/Rsvp";
 import Link from "./pages/Link";
@@ -269,7 +269,10 @@ function App() {
           maxWidth: "560px",
           width: "100%",
           margin: "0 auto",
-          height: mode === "auto" ? "600px" : "8700px",
+          height:
+            mode === "auto"
+              ? "600px"
+              : `calc(${TOTAL_SCROLL_DISTANCE}px + 100vh)`,
         }}
       >
         {mode === "scroll" ? (

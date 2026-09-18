@@ -17,6 +17,9 @@ const START_Z = -2200;
 const END_Z = 0;
 const START_Z_FIRST = -1000; // 처음에 더 뒤쪽(원거리)에서 시작
 
+export const TOTAL_SCROLL_DISTANCE =
+  IMAGE_UNIT_FIRST + (images.length - 1) * IMAGE_UNIT_OTHERS; // 8650px
+
 const imageTexts = [
   <>
     2026년 11월 14일
@@ -74,6 +77,7 @@ const Scroll: React.FC<ScrollProps> = ({ coverDone = true }) => {
   );
 
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -82,6 +86,8 @@ const Scroll: React.FC<ScrollProps> = ({ coverDone = true }) => {
       if (!hasScrolled && scrollY > 5) {
         setHasScrolled(true);
       }
+
+      setIsFinished(scrollY >= TOTAL_SCROLL_DISTANCE);
 
       const newZs: number[] = [];
       const newOpacities: number[] = [];
@@ -151,6 +157,7 @@ const Scroll: React.FC<ScrollProps> = ({ coverDone = true }) => {
           inset: 0,
           pointerEvents: "none",
           perspective: "1200px",
+          display: isFinished ? "none" : "block",
         }}
       >
         {images.map((img, index) => (
