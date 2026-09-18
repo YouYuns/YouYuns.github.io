@@ -56,7 +56,8 @@
 .scroll-guide {
   position: fixed;
   top: auto;
-  bottom: 15% !important;
+  bottom: 8% !important;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 8%) !important;
   left: 50%; /* 가로 중앙 */
   transform: translateX(-50%);
   display: flex;
