@@ -68,18 +68,22 @@ const AutoCover: React.FC<AutoCoverProps> = ({ coverDone = true }) => {
   const touchDeltaX = useRef(0);
 
   /* =========================
-     시작 타이머 & 화살표 4초 딜레이 타이머
+     시작 타이머
   ========================= */
   useEffect(() => {
     if (coverDone) {
       setStart(true);
-      // Cover 종료 후 4초 뒤에 스크롤 화살표 표시
-      const arrowTimer = setTimeout(() => {
-        setShowArrow(true);
-      }, 4000);
-      return () => clearTimeout(arrowTimer);
     }
   }, [coverDone]);
+
+  /* =========================
+     2번째 사진이 나올 때 화살표 표시
+  ========================= */
+  useEffect(() => {
+    if (index >= 1) {
+      setShowArrow(true);
+    }
+  }, [index]);
 
   /* =========================
      자동 슬라이드
@@ -153,7 +157,11 @@ const AutoCover: React.FC<AutoCoverProps> = ({ coverDone = true }) => {
             className={`autocover-item ${i === index ? "active" : ""}`}
           >
             <div className="caption">{imageTexts[i]}</div>
-            <img src={img} alt={`auto-${i}`} />
+            <img
+              src={img}
+              alt={`auto-${i}`}
+              className={img === p8 ? "landscape" : ""}
+            />
           </div>
         ))}
       </div>

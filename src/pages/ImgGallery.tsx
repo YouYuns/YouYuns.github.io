@@ -18,7 +18,6 @@ import p4 from "../images/4.webp";
 import p5 from "../images/5.webp";
 import p6 from "../images/6.webp";
 import p7 from "../images/7.webp";
-import p8 from "../images/8.webp";
 import p9 from "../images/9.webp";
 import p10 from "../images/10.webp";
 import p11 from "../images/11.webp";
@@ -50,7 +49,6 @@ const ImgGallery: React.FC = () => {
     p5,
     p6,
     p7,
-    p8,
     p9,
     p10,
     p11,
@@ -112,21 +110,24 @@ const ImgGallery: React.FC = () => {
         <div className="gallery-slide-container">
           {/* Main Swiper */}
           <Swiper
+            loop={true}
             spaceBetween={10}
             thumbs={{
               swiper:
                 thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
             }}
             modules={[Thumbs]}
+            onClick={(swiper) => {
+              if (typeof swiper.realIndex === "number") {
+                setIndex(swiper.realIndex);
+                setOpen(true);
+              }
+            }}
             className="gallery-main-swiper"
           >
             {images.map((img, idx) => (
               <SwiperSlide
                 key={idx}
-                onClick={() => {
-                  setIndex(idx);
-                  setOpen(true);
-                }}
                 className="gallery-main-slide"
               >
                 <img
@@ -169,6 +170,7 @@ const ImgGallery: React.FC = () => {
         open={open}
         close={() => setOpen(false)}
         index={index}
+        carousel={{ finite: false }}
         slides={images.map((img) => ({ src: img }))}
       />
     </div>
