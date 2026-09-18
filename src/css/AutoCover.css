@@ -64,6 +64,7 @@
   align-items: center;
   pointer-events: none;
   z-index: 5000;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
 .scroll-guide .arrow {
@@ -81,6 +82,15 @@
   display: block;
   filter: brightness(0);
   opacity: 0.8;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes bounce {

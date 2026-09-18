@@ -11,11 +11,11 @@ import "./css/Calendar.css";
 import "./css/Contact.css";
 import "./css/Navigator.css";
 import "./css/Scroll.css";
+import "./css/AutoCover.css";
 import "./css/Account.css";
 import "./css/SurveryModal.css";
 // import "./css/Rscvp.css";
 import "./css/Link.css";
-import "./css/Account.css";
 
 import Cover from "./pages/Cover";
 import Invitation from "./pages/Invitation";
@@ -272,7 +272,11 @@ function App() {
           height: mode === "auto" ? "600px" : "8700px",
         }}
       >
-        {mode === "scroll" ? <Scroll /> : <AutoCover />}
+        {mode === "scroll" ? (
+          <Scroll coverDone={coverDone} />
+        ) : (
+          <AutoCover coverDone={coverDone} />
+        )}
       </div>
 
       <Invitation />

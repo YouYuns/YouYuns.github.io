@@ -53,9 +53,14 @@ const imageTexts = [
   </>,
 ];
 
-const AutoCover: React.FC = () => {
+interface AutoCoverProps {
+  coverDone?: boolean;
+}
+
+const AutoCover: React.FC<AutoCoverProps> = ({ coverDone = true }) => {
   const [index, setIndex] = useState(0);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [showArrow, setShowArrow] = useState(false);
   const [start, setStart] = useState(false);
 
   const intervalRef = useRef<number | null>(null);
@@ -63,12 +68,18 @@ const AutoCover: React.FC = () => {
   const touchDeltaX = useRef(0);
 
   /* =========================
-     시작 타이머
+     시작 타이머 & 화살표 4초 딜레이 타이머
   ========================= */
   useEffect(() => {
-    const timer = setTimeout(() => setStart(true), 4000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (coverDone) {
+      setStart(true);
+      // Cover 종료 후 4초 뒤에 스크롤 화살표 표시
+      const arrowTimer = setTimeout(() => {
+        setShowArrow(true);
+      }, 4000);
+      return () => clearTimeout(arrowTimer);
+    }
+  }, [coverDone]);
 
   /* =========================
      자동 슬라이드
@@ -147,7 +158,7 @@ const AutoCover: React.FC = () => {
         ))}
       </div>
 
-      {!hasScrolled && (
+      {!hasScrolled && showArrow && (
         <div className="scroll-guide">
           <div className="arrow">
             <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />

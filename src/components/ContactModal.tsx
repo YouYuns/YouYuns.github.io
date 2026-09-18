@@ -17,11 +17,23 @@ const ContactModal: React.FC<ContactModalProps> = ({
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden"; // html도 막기
 
+    window.history.pushState({ contactModalOpen: true }, "");
+
+    const handlePopState = () => {
+      closeModal();
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
     return () => {
       document.body.style.overflow = "auto";
       document.documentElement.style.overflow = "auto";
+      window.removeEventListener("popstate", handlePopState);
+      if (window.history.state?.contactModalOpen) {
+        window.history.back();
+      }
     };
-  }, []);
+  }, [closeModal]);
   return (
     <div className="modal-overlay" onClick={closeModal}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>

@@ -10,12 +10,12 @@ import p8 from "../images/8.webp";
 
 const images = [p1, p2, p3, p4, p5, p6, p7, p8];
 
-const IMAGE_UNIT_FIRST = 200; // ✅ Cover 영역
+const IMAGE_UNIT_FIRST = 600; // 첫 사진 줌인 스크롤 거리
 const IMAGE_UNIT_OTHERS = 1150;
 
-const START_Z = -2000;
+const START_Z = -2200;
 const END_Z = 0;
-const START_Z_FIRST = -500;
+const START_Z_FIRST = -1000; // 처음에 더 뒤쪽(원거리)에서 시작
 
 const imageTexts = [
   <>
@@ -61,15 +61,20 @@ const imageTexts = [
 
 const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
 
-const Scroll: React.FC = () => {
+interface ScrollProps {
+  coverDone?: boolean;
+}
+
+const Scroll: React.FC<ScrollProps> = ({ coverDone = true }) => {
   const [zs, setZs] = useState<number[]>(
-    images.map((_, i) => (i === 0 ? 0 : START_Z))
+    images.map((_, i) => (i === 0 ? START_Z_FIRST : START_Z))
   );
   const [opacities, setOpacities] = useState<number[]>(
     images.map((_, i) => (i === 0 ? 1 : 0))
   );
 
   const [hasScrolled, setHasScrolled] = useState(false);
+
   useEffect(() => {
     const onScroll = () => {
       const scrollY = window.scrollY;
@@ -123,20 +128,18 @@ const Scroll: React.FC = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [hasScrolled]);
 
   return (
     <>
-      {/* 🔽 스크롤 유도 (Cover 이후에만) */}
-      {!hasScrolled && (
+      {/* 🔽 스크롤 유도 (스크롤 모드에서는 커버 끝나자마자 바로 표시) */}
+      {!hasScrolled && coverDone && (
         <div className="scroll-guide">
-          <div className="arrow_div">
-            <div className="arrow">
-              <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
-            </div>
-            <div className="arrow">
-              <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
-            </div>
+          <div className="arrow">
+            <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
+          </div>
+          <div className="arrow">
+            <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
           </div>
         </div>
       )}
