@@ -335,7 +335,7 @@ function App() {
           margin: "0 auto",
           height:
             mode === "auto"
-              ? "600px"
+              ? "620px"
               : `calc(${TOTAL_SCROLL_DISTANCE}px + 100vh)`,
         }}
       >
