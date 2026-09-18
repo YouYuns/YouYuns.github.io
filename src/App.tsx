@@ -182,9 +182,72 @@ function App() {
   }, []);
 
   /* ===========================
-     스크롤 유틸 (기존)
+     스크롤 유틸 및 탭 활성화 (ScrollSpy)
   ============================ */
-  const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
+  const [activeTab, setActiveTab] = useState(0);
+  const isClickScrollingRef = useRef(false);
+  const clickScrollTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isClickScrollingRef.current) return;
+
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+
+      // 페이지 끝에 도달했을 때 -> 마지막 탭("연락처") 활성화
+      if (windowHeight + scrollY >= docHeight - 60) {
+        setActiveTab(3);
+        return;
+      }
+
+      const contactTop =
+        contactRef.current?.getBoundingClientRect().top ?? Infinity;
+      const locationTop =
+        locationRef.current?.getBoundingClientRect().top ?? Infinity;
+      const galleryTop =
+        galleryRef.current?.getBoundingClientRect().top ?? Infinity;
+
+      const threshold = 120;
+
+      if (contactTop <= threshold) {
+        setActiveTab(3);
+      } else if (locationTop <= threshold) {
+        setActiveTab(2);
+      } else if (galleryTop <= threshold) {
+        setActiveTab(1);
+      } else {
+        setActiveTab(0);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (clickScrollTimerRef.current) {
+        clearTimeout(clickScrollTimerRef.current);
+      }
+    };
+  }, []);
+
+  const scrollTo = (
+    ref: React.RefObject<HTMLDivElement | null>,
+    tabIndex?: number
+  ) => {
+    if (tabIndex !== undefined) {
+      setActiveTab(tabIndex);
+      isClickScrollingRef.current = true;
+      if (clickScrollTimerRef.current) {
+        clearTimeout(clickScrollTimerRef.current);
+      }
+      clickScrollTimerRef.current = window.setTimeout(() => {
+        isClickScrollingRef.current = false;
+      }, 800);
+    }
+
     if (!ref.current) return;
 
     const offset = 80;
@@ -256,10 +319,11 @@ function App() {
         audioRef={audioRef}
         isMuted={isMuted}
         setIsMuted={setIsMuted}
-        scrollToGalleryTop={() => scrollTo(galleryTopRef)}
-        scrollToLocation={() => scrollTo(locationRef)}
-        scrollToGallery={() => scrollTo(galleryRef)}
-        scrollToContact={() => scrollTo(contactRef)}
+        activeTab={activeTab}
+        scrollToGalleryTop={() => scrollTo(galleryTopRef, 0)}
+        scrollToGallery={() => scrollTo(galleryRef, 1)}
+        scrollToLocation={() => scrollTo(locationRef, 2)}
+        scrollToContact={() => scrollTo(contactRef, 3)}
       />
 
       <div

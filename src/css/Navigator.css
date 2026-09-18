@@ -79,8 +79,24 @@
 .nav-item {
   cursor: pointer;
   font-size: 17px;
+  color: #9c8a86;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid transparent;
+  transition: color 0.25s ease, border-bottom-color 0.25s ease;
   opacity: 0;
   animation: navFadeIn 1.2s forwards;
+}
+
+.nav-item.active {
+  color: rgb(95, 25, 25);
+  font-weight: bold;
+  border-bottom-color: rgb(95, 25, 25);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-item:hover {
+    color: rgb(95, 25, 25);
+  }
 }
 
 @keyframes navFadeIn {

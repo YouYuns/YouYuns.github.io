@@ -7,6 +7,7 @@ interface NavigatorProps {
   audioRef: React.RefObject<HTMLAudioElement | null>;
   isMuted: boolean;
   setIsMuted: React.Dispatch<React.SetStateAction<boolean>>;
+  activeTab: number;
 
   scrollToGalleryTop: () => void;
   scrollToContact: () => void;
@@ -21,10 +22,11 @@ const Navigator: React.FC<NavigatorProps> = ({
   audioRef,
   isMuted,
   setIsMuted,
+  activeTab,
   scrollToGalleryTop,
   scrollToContact,
-  scrollToGallery,
   scrollToLocation,
+  scrollToGallery,
 }) => {
   const [clicked, setClicked] = useState(false);
   const [navMode, setNavMode] = useState<NavMode>("hidden");
@@ -98,16 +100,28 @@ const Navigator: React.FC<NavigatorProps> = ({
         {/* ===== 네비 ===== */}
         {navMode === "nav" && (
           <div className="nav-items">
-            <div className="nav-item" onClick={scrollToGalleryTop}>
+            <div
+              className={`nav-item ${activeTab === 0 ? "active" : ""}`}
+              onClick={scrollToGalleryTop}
+            >
               {navTexts[0]}
             </div>
-            <div className="nav-item" onClick={scrollToGallery}>
+            <div
+              className={`nav-item ${activeTab === 1 ? "active" : ""}`}
+              onClick={scrollToGallery}
+            >
               {navTexts[1]}
             </div>
-            <div className="nav-item" onClick={scrollToLocation}>
+            <div
+              className={`nav-item ${activeTab === 2 ? "active" : ""}`}
+              onClick={scrollToLocation}
+            >
               {navTexts[2]}
             </div>
-            <div className="nav-item" onClick={scrollToContact}>
+            <div
+              className={`nav-item ${activeTab === 3 ? "active" : ""}`}
+              onClick={scrollToContact}
+            >
               {navTexts[3]}
             </div>
           </div>
