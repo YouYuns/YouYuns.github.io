@@ -67,12 +67,17 @@ const LinkShare: React.FC = () => {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) kakao.init(JS_KEY);
 
+    const isH1 = window.location.search.includes("mode=h1");
+    const shareImage = isH1
+      ? "https://youyuns.github.io/main1.webp"
+      : "https://youyuns.github.io/main.webp";
+
     kakao.Share.sendDefault({
       objectType: "feed",
       content: {
         title: "성호&소리, 결혼합니다",
         description: "우리 결혼식에 초대합니다! 함께 축복해주세요.",
-        imageUrl: "https://youyuns.github.io/main.webp",
+        imageUrl: shareImage,
         link: { webUrl: shareUrl, mobileWebUrl: shareUrl }, // 파라미터 포함 URL
       },
       buttons: [

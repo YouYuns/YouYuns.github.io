@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import queryString from "query-string";
 import "../css/Cover.css";
 import mainImg from "../images/main.webp";
+import main1Img from "../images/main1.webp";
 
 interface CoverProps {
   onDone?: () => void;
@@ -11,6 +13,11 @@ const FADE_OUT_DELAY = 3000;
 
 function Cover({ onDone }: CoverProps) {
   const [loaded, setLoaded] = useState(false);
+
+  const coverImg = useMemo(() => {
+    const parsed = queryString.parse(window.location.search);
+    return parsed.mode === "h1" ? main1Img : mainImg;
+  }, []);
 
   const handleImageLoad = () => {
     // 이미지 로딩 완료 후 1초 딜레이 후 loaded 상태 변경
@@ -28,7 +35,7 @@ function Cover({ onDone }: CoverProps) {
       {/* 배경 이미지 */}
       <img
         className="cover-bg-img"
-        src={mainImg}
+        src={coverImg}
         alt=""
         loading="eager"
         decoding="async"
