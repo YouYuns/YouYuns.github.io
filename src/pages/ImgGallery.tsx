@@ -11,62 +11,54 @@ import "swiper/css/thumbs";
 
 import { useFadeUp } from "../hooks/useFadeUp";
 
-import p1 from "../images/1.webp";
-import p2 from "../images/2.webp";
-import p3 from "../images/3.webp";
-import p4 from "../images/4.webp";
-import p5 from "../images/5.webp";
-import p6 from "../images/6.webp";
-import p7 from "../images/7.webp";
-import p9 from "../images/9.webp";
-import p10 from "../images/10.webp";
-import p11 from "../images/11.webp";
-import p12 from "../images/12.webp";
-import p13 from "../images/13.webp";
-import p14 from "../images/14.webp";
-import p15 from "../images/15.webp";
-import p16 from "../images/16.webp";
-import p17 from "../images/17.webp";
-import p18 from "../images/18.webp";
-import p19 from "../images/19.webp";
-import p20 from "../images/20.webp";
-import p21 from "../images/21.webp";
-import p22 from "../images/22.webp";
-import p23 from "../images/23.webp";
-import p24 from "../images/24.webp";
-import p25 from "../images/25.webp";
-import p26 from "../images/26.webp";
+import g1 from "../images/gallery-1.webp";
+import g2 from "../images/gallery-2.webp";
+import g3 from "../images/gallery-3.webp";
+import g4 from "../images/gallery-4.webp";
+import g5 from "../images/gallery-5.webp";
+import g6 from "../images/gallery-6.webp";
+import g7 from "../images/gallery-7.webp";
+import g8 from "../images/gallery-8.webp";
+import g9 from "../images/gallery-9.webp";
+import g10 from "../images/gallery-10.webp";
+import g11 from "../images/gallery-11.webp";
+import g12 from "../images/gallery-12.webp";
+import g13 from "../images/gallery-13.webp";
+import g14 from "../images/gallery-14.webp";
+import g15 from "../images/gallery-15.webp";
+import g16 from "../images/gallery-16.webp";
+import g17 from "../images/gallery-17.webp";
+import g18 from "../images/gallery-18.webp";
+import g19 from "../images/gallery-19.webp";
+import g20 from "../images/gallery-20.webp";
+import g21 from "../images/gallery-21.webp";
 
 const ImgGallery: React.FC = () => {
   const { ref: titleRef, show: titleShow } = useFadeUp();
   const { ref: ImgGalleryRef, show: ImgGalleryShow } = useFadeUp();
 
   const images = [
-    p1,
-    p2,
-    p3,
-    p4,
-    p5,
-    p6,
-    p7,
-    p9,
-    p10,
-    p11,
-    p12,
-    p13,
-    p14,
-    p15,
-    p16,
-    p17,
-    p18,
-    p19,
-    p20,
-    p21,
-    p22,
-    p23,
-    p24,
-    p25,
-    p26,
+    g1,
+    g2,
+    g3,
+    g4,
+    g5,
+    g6,
+    g7,
+    g8,
+    g9,
+    g10,
+    g11,
+    g12,
+    g13,
+    g14,
+    g15,
+    g16,
+    g17,
+    g18,
+    g19,
+    g20,
+    g21,
   ];
 
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
@@ -133,7 +125,7 @@ const ImgGallery: React.FC = () => {
                 <img
                   src={img}
                   alt={`wedding-photo-${idx + 1}`}
-                  className="gallery-main-img"
+                  className={`gallery-main-img ${img === g5 ? "pos-left" : ""}`}
                   loading={idx < 4 ? "eager" : "lazy"}
                 />
               </SwiperSlide>
@@ -156,7 +148,7 @@ const ImgGallery: React.FC = () => {
                 <img
                   src={img}
                   alt={`thumb-${idx + 1}`}
-                  className="gallery-thumb-img"
+                  className={`gallery-thumb-img ${img === g5 ? "pos-left" : ""}`}
                   loading="lazy"
                 />
               </SwiperSlide>

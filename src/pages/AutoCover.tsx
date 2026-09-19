@@ -4,12 +4,8 @@ import p1 from "../images/1.webp";
 import p2 from "../images/2.webp";
 import p3 from "../images/3.webp";
 import p4 from "../images/4.webp";
-import p5 from "../images/5.webp";
-import p6 from "../images/6.webp";
-import p7 from "../images/7.webp";
-import p8 from "../images/8.webp";
 
-const images = [p1, p2, p3, p4, p5, p6, p7, p8];
+const images = [p1, p2, p3, p4, p1, p2, p3, p4];
 
 const imageTexts = [
   <>
@@ -160,7 +156,6 @@ const AutoCover: React.FC<AutoCoverProps> = ({ coverDone = true }) => {
             <img
               src={img}
               alt={`auto-${i}`}
-              className={img === p8 ? "landscape" : ""}
             />
           </div>
         ))}
