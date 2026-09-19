@@ -4,8 +4,10 @@ import p1 from "../images/1.webp";
 import p2 from "../images/2.webp";
 import p3 from "../images/3.webp";
 import p4 from "../images/4.webp";
+import p5 from "../images/5.webp";
+import scrollArrow from "../images/scroll-arrow.png";
 
-const images = [p1, p2, p3, p4, p1, p2, p3, p4];
+const images = [p1, p2, p3, p4, p5];
 
 const imageTexts = [
   <>
@@ -29,23 +31,9 @@ const imageTexts = [
     나란히 걸어가려 합니다.
   </>,
   <>
-    그 이야기가 시작되는 순간에
-    <br />
-    함께 축하해 주시길 바랍니다.
-  </>,
-  <>
-    더웠던 여름, 소나기 뒤 무지개처럼 찾아온
-    <br />
-    소중한 사람과 함께 행복하게 살겠습니다.
-  </>,
-  <>
-    겨울 햇살처럼 잔잔하고 따뜻한
-    <br />
-    사랑으로 함께하겠습니다.
-  </>,
-  <>
     기쁨과 설렘 가득한
-    <br />그 시작을 함께 축복해 주세요.
+    <br />
+    그 시작을 함께 축복해 주세요.
   </>,
 ];
 
@@ -61,8 +49,8 @@ const AutoCover: React.FC<AutoCoverProps> = ({ coverDone = true }) => {
   const touchStartX = useRef<number | null>(null);
   const touchDeltaX = useRef(0);
 
-  // 2번째 사진부터 스크롤 가이드 화살표 노출
-  const showArrow = index >= 1;
+  // 마지막 사진(5번째)이 나올 때만 스크롤 가이드 화살표 노출
+  const showArrow = coverDone && index === images.length - 1;
 
   /* =========================
      자동 슬라이드 (커버 완료 시 시작)
@@ -85,15 +73,16 @@ const AutoCover: React.FC<AutoCoverProps> = ({ coverDone = true }) => {
   }, [coverDone]);
 
   /* =========================
-     스크롤 감지
+     스크롤 감지 (스크롤 내리면 화살표 숨김, 맨 위에서는 다시 표시)
   ========================= */
   useEffect(() => {
     const onScroll = () => {
-      if (!hasScrolled && window.scrollY > 5) setHasScrolled(true);
+      setHasScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [hasScrolled]);
+  }, []);
 
   /* =========================
      터치 슬라이드 (스와이프로 수동 이동, 자동 슬라이드는 계속 진행)
@@ -147,10 +136,10 @@ const AutoCover: React.FC<AutoCoverProps> = ({ coverDone = true }) => {
       {!hasScrolled && showArrow && (
         <div className="scroll-guide">
           <div className="arrow">
-            <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
+            <img src={scrollArrow} alt="scroll" />
           </div>
           <div className="arrow">
-            <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
+            <img src={scrollArrow} alt="scroll" />
           </div>
         </div>
       )}

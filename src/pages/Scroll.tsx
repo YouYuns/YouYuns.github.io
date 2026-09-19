@@ -3,8 +3,10 @@ import p1 from "../images/1.webp";
 import p2 from "../images/2.webp";
 import p3 from "../images/3.webp";
 import p4 from "../images/4.webp";
+import p5 from "../images/5.webp";
+import scrollArrow from "../images/scroll-arrow.png";
 
-const images = [p1, p2, p3, p4, p1, p2, p3, p4];
+const images = [p1, p2, p3, p4, p5];
 
 const IMAGE_UNIT_FIRST = 600; // 첫 사진 줌인 스크롤 거리
 const IMAGE_UNIT_OTHERS = 1150;
@@ -14,7 +16,7 @@ const END_Z = 0;
 const START_Z_FIRST = -1000; // 처음에 더 뒤쪽(원거리)에서 시작
 
 export const TOTAL_SCROLL_DISTANCE =
-  IMAGE_UNIT_FIRST + (images.length - 1) * IMAGE_UNIT_OTHERS; // 8650px
+  IMAGE_UNIT_FIRST + (images.length - 1) * IMAGE_UNIT_OTHERS;
 
 const imageTexts = [
   <>
@@ -38,23 +40,9 @@ const imageTexts = [
     나란히 걸어가려 합니다.
   </>,
   <>
-    그 이야기가 시작되는 순간에
-    <br />
-    함께 축하해 주시길 바랍니다.
-  </>,
-  <>
-    더웠던 여름, 소나기 뒤 무지개처럼 찾아온
-    <br />
-    소중한 사람과 함께 행복하게 살겠습니다.
-  </>,
-  <>
-    겨울 햇살처럼 잔잔하고 따뜻한
-    <br />
-    사랑으로 함께하겠습니다.
-  </>,
-  <>
     기쁨과 설렘 가득한
-    <br />그 시작을 함께 축복해 주세요.
+    <br />
+    그 시작을 함께 축복해 주세요.
   </>,
 ];
 
@@ -79,9 +67,7 @@ const Scroll: React.FC<ScrollProps> = ({ coverDone = true }) => {
     const onScroll = () => {
       const scrollY = window.scrollY;
 
-      if (!hasScrolled && scrollY > 5) {
-        setHasScrolled(true);
-      }
+      setHasScrolled(scrollY > 20);
 
       setIsFinished(scrollY >= TOTAL_SCROLL_DISTANCE);
 
@@ -138,10 +124,10 @@ const Scroll: React.FC<ScrollProps> = ({ coverDone = true }) => {
       {!hasScrolled && coverDone && (
         <div className="scroll-guide">
           <div className="arrow">
-            <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
+            <img src={scrollArrow} alt="scroll" />
           </div>
           <div className="arrow">
-            <img src="https://i.ibb.co/BTbSmBS/1.png" alt="scroll" />
+            <img src={scrollArrow} alt="scroll" />
           </div>
         </div>
       )}

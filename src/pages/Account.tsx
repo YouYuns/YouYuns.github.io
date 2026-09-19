@@ -36,7 +36,7 @@ const Account: React.FC = () => {
       id: "bride",
       title: "신부측 계좌번호",
       contacts: [
-        { person: "최소리", account: "신한은행 110-464-764462" },
+        { person: "최소리", account: "하나은행 394-910481-58607" },
       ],
     },
     {

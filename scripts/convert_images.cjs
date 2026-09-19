@@ -100,9 +100,9 @@ async function run() {
     ]);
   }
 
-  // 4. Remove old 5.webp ~ 30.webp if they exist
+  // 4. Remove old 6.webp ~ 30.webp if they exist
   console.log('\nCleaning up old unused numbered webp files in src/images:');
-  for (let num = 5; num <= 30; num++) {
+  for (let num = 6; num <= 30; num++) {
     const oldFile = path.join(destDir, `${num}.webp`);
     if (fs.existsSync(oldFile)) {
       fs.unlinkSync(oldFile);
