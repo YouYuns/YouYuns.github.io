@@ -56,33 +56,16 @@ interface AutoCoverProps {
 const AutoCover: React.FC<AutoCoverProps> = ({ coverDone = true }) => {
   const [index, setIndex] = useState(0);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [showArrow, setShowArrow] = useState(false);
-  const [start, setStart] = useState(false);
 
   const intervalRef = useRef<number | null>(null);
   const touchStartX = useRef<number | null>(null);
   const touchDeltaX = useRef(0);
 
-  /* =========================
-     시작 타이머
-  ========================= */
-  useEffect(() => {
-    if (coverDone) {
-      setStart(true);
-    }
-  }, [coverDone]);
+  // 2번째 사진부터 스크롤 가이드 화살표 노출
+  const showArrow = index >= 1;
 
   /* =========================
-     2번째 사진이 나올 때 화살표 표시
-  ========================= */
-  useEffect(() => {
-    if (index >= 1) {
-      setShowArrow(true);
-    }
-  }, [index]);
-
-  /* =========================
-     자동 슬라이드
+     자동 슬라이드 (커버 완료 시 시작)
   ========================= */
   const startAutoSlide = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -92,14 +75,14 @@ const AutoCover: React.FC<AutoCoverProps> = ({ coverDone = true }) => {
   };
 
   useEffect(() => {
-    if (!start) return;
+    if (!coverDone) return;
 
     startAutoSlide();
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [start]);
+  }, [coverDone]);
 
   /* =========================
      스크롤 감지
