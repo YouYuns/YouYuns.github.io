@@ -15,24 +15,26 @@
   width: 100%;
   max-width: 560px;
 }
-
 .invitation__family {
   margin-top: 5px;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   font-size: 18px;
 }
 
 .invitation__parent {
-  margin: 5px 10px;
+  width: 148px;
+  text-align: right;
+  margin-right: 8px;
+  white-space: nowrap;
 }
 
 .invitation__child {
-  margin-left: 10px;
+  margin-left: 8px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .invitation__btn-contact {

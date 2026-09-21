@@ -20,7 +20,7 @@ export const TOTAL_SCROLL_DISTANCE =
 
 const imageTexts = [
   <>
-    2026년 11월 14일
+    2026년 11월 14일 3시
     <br />
     왕십리 디노체 컨벤션
   </>,

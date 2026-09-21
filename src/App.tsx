@@ -106,6 +106,36 @@ function App() {
   const [mode, setMode] = useState<"scroll" | "auto">("auto");
   const [coverDone, setCoverDone] = useState(false);
 
+  /* ===========================
+     커버 화면(인트로 썸네일) 표시 중 스크롤 차단
+  ============================ */
+  useEffect(() => {
+    if (!coverDone) {
+      const originalOverflow = document.body.style.overflow;
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+      
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      window.scrollTo(0, 0);
+
+      const preventScroll = (e: TouchEvent | WheelEvent) => {
+        if (e.cancelable) {
+          e.preventDefault();
+        }
+      };
+
+      window.addEventListener("wheel", preventScroll, { passive: false });
+      window.addEventListener("touchmove", preventScroll, { passive: false });
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        document.documentElement.style.overflow = originalHtmlOverflow;
+        window.removeEventListener("wheel", preventScroll);
+        window.removeEventListener("touchmove", preventScroll);
+      };
+    }
+  }, [coverDone]);
+
   /* =========================
      🩷 하트 눈송이 (캔버스에 직접 그려서 비동기 로딩 없이 즉시 사용)
   ============================ */

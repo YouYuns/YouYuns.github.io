@@ -11,7 +11,7 @@ const images = [p1, p2, p3, p4, p5];
 
 const imageTexts = [
   <>
-    2026년 11월 14일
+    2026년 11월 14일 3시
     <br />
     왕십리 디노체 컨벤션
   </>,

@@ -14,9 +14,10 @@ const FADE_OUT_DELAY = 3000;
 function Cover({ onDone }: CoverProps) {
   const [loaded, setLoaded] = useState(false);
 
-  const coverImg = useMemo(() => {
+  const { coverImg, isH1Mode } = useMemo(() => {
     const parsed = queryString.parse(window.location.search);
-    return parsed.mode === "h1" ? main1Img : mainImg;
+    const h1 = parsed.mode === "h1";
+    return { coverImg: h1 ? main1Img : mainImg, isH1Mode: h1 };
   }, []);
 
   const handleImageLoad = () => {
@@ -34,7 +35,7 @@ function Cover({ onDone }: CoverProps) {
     <div className={`cover-container ${loaded ? "loaded" : ""}`}>
       {/* 배경 이미지 */}
       <img
-        className="cover-bg-img"
+        className={`cover-bg-img${isH1Mode ? " h1-mode" : ""}`}
         src={coverImg}
         alt=""
         loading="eager"
@@ -48,16 +49,28 @@ function Cover({ onDone }: CoverProps) {
       {/* 🔄 로딩 인디케이터 */}
       {!loaded && <div className="cover-loader" />}
 
-      <div className="cover-texts">
-        <div className="center-text">
-          <span className="text-love">LOVE</span>
-          <span className="text-is">OF</span>
-        </div>
-
-        <div className="text-bottom">
-          <span className="text-life">LIFE</span>
-          <span className="line"></span>
-        </div>
+      <div className={`cover-texts${isH1Mode ? " h1-mode" : ""}`}>
+        {isH1Mode ? (
+          <>
+            <div className="center-text">
+              <span className="text-love">애들아</span>
+            </div>
+            <div className="text-bottom">
+              <span className="text-life h1-text">나 장가간다</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="center-text">
+              <span className="text-love">LOVE</span>
+              <span className="text-is">OF</span>
+            </div>
+            <div className="text-bottom">
+              <span className="text-life">LIFE</span>
+              <span className="line"></span>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="cover-footer">

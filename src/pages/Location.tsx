@@ -128,12 +128,16 @@ const Location: React.FC = () => {
   };
 
   const gotoKakaoMap = () => {
-    window.location.href =
-      "https://map.kakao.com/link/search/왕십리%20디노체%20컨벤션";
+    window.open(
+      "https://map.kakao.com/link/search/왕십리%20디노체%20컨벤션",
+      "_blank"
+    );
   };
   const gotoNavermap = () => {
-    window.location.href =
-      "https://map.naver.com/v5/search/왕십리%20디노체%20컨벤션";
+    window.open(
+      "https://map.naver.com/v5/search/왕십리%20디노체%20컨벤션",
+      "_blank"
+    );
   };
 
   return (
