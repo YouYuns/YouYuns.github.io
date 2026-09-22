@@ -76,7 +76,7 @@ const LinkShare: React.FC = () => {
       objectType: "feed",
       content: {
         title: "성호&소리, 결혼합니다",
-        description: "우리 결혼식에 초대합니다! 함께 축복해주세요.",
+        description: "저희 결혼식에 초대합니다! 함께 축복해주세요.",
         imageUrl: shareImage,
         link: { webUrl: shareUrl, mobileWebUrl: shareUrl }, // 파라미터 포함 URL
       },
