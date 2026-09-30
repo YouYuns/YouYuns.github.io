@@ -152,7 +152,7 @@ const Location: React.FC = () => {
         className={`fade-up ${locationShow ? "show" : ""}`}
       >
         <div className="location__details">
-          <div>디노체컨벤션</div>
+          <div>디노체컨벤션 단독홀</div>
           <div>서울 성동구 왕십리광장로 17</div>
           <div>비트플렉스 6층</div>
         </div>
