@@ -46,13 +46,24 @@
 /* h1 모드 폰트: Cafe24Oneprettynight 적용 */
 .cover-texts.h1-mode .text-love {
   font-family: "Cafe24Oneprettynight", sans-serif;
+  animation: loveFromLeft_h1 1.2s ease-out 0s both;
+}
+
+@keyframes loveFromLeft_h1 {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* h1 모드 "나 장가간다" - 오프셋 없이 왼쪽부터, 애들아 이후에 등장 */
 .text-life.h1-text {
   font-family: "Cafe24Oneprettynight", sans-serif;
-  animation: lifeFromRight_h1 2.5s ease-out forwards;
-  animation-delay: 0.8s;
+  animation: lifeFromRight_h1 1.2s ease-out 0.8s both;
   opacity: 0;
 }
 
@@ -160,12 +171,12 @@
 
 /* 기본: 정지 */
 .cover-container * {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
 }
 
 /* 이미지 로드 후 실행 */
 .cover-container.loaded * {
-  animation-play-state: running;
+  animation-play-state: running !important;
 }
 
 /* =========================
@@ -307,11 +318,6 @@
   animation: coverFadeOut 1.8s ease-out forwards;
   animation-delay: 3s; /* 로딩 완료 후 1초 뒤에 시작 */
   pointer-events: none;
-}
-
-/* 기본: 애니메이션 정지 */
-.cover-container * {
-  animation-play-state: paused;
 }
 
 /* 로딩 완료 후 로딩바 숨기기 */
