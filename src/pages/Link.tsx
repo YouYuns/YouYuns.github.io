@@ -68,8 +68,11 @@ const LinkShare: React.FC = () => {
     if (!kakao.isInitialized()) kakao.init(JS_KEY);
 
     const isH1 = window.location.search.includes("mode=h1");
+    const isR1 = window.location.search.includes("mode=r1");
     const shareImage = isH1
       ? "https://youyuns.github.io/main1.webp"
+      : isR1
+      ? "https://youyuns.github.io/main2.webp"
       : "https://youyuns.github.io/main.webp";
 
     kakao.Share.sendDefault({
